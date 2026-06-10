@@ -2,29 +2,8 @@
 
 import { useState } from "react";
 
-const imagenes = {
-  taladro: "https://loremflickr.com/900/600/power-drill,tool",
-  esmeril: "https://loremflickr.com/900/600/angle-grinder,tool",
-  destornilladores: "https://loremflickr.com/900/600/screwdriver,tools",
-  pintura: "https://loremflickr.com/900/600/paint,roller",
-  ampolleta: "https://loremflickr.com/900/600/light-bulb,electricity",
-  tornillos: "https://loremflickr.com/900/600/screws,hardware",
-  sierra: "https://loremflickr.com/900/600/circular-saw,tool",
-  casco: "https://loremflickr.com/900/600/safety-helmet,construction",
-  cinta: "https://loremflickr.com/900/600/measuring-tape,tool",
-  alargador: "https://loremflickr.com/900/600/extension-cord,electricity",
-  silicona: "https://loremflickr.com/900/600/sealant,caulk",
-  escalera: "https://loremflickr.com/900/600/ladder,tool",
-  carretilla: "https://loremflickr.com/900/600/wheelbarrow,construction",
-  guantes: "https://loremflickr.com/900/600/work-gloves,safety",
-  cemento: "https://loremflickr.com/900/600/cement,construction",
-  interruptor: "https://loremflickr.com/900/600/light-switch,electricity",
-  demoledor: "https://loremflickr.com/900/600/jackhammer,construction",
-  betonera: "https://loremflickr.com/900/600/concrete-mixer,construction",
-  hidrolavadora: "https://loremflickr.com/900/600/pressure-washer,cleaning",
-};
-
-const imagenRespaldo = "https://loremflickr.com/900/600/tools,hardware";
+const imagenProducto = (texto) =>
+  `https://placehold.co/900x600/f8fafc/0f172a?text=${encodeURIComponent(texto)}`;
 
 const productos = [
   {
@@ -33,7 +12,7 @@ const productos = [
     marca: "Cordillera Pro",
     precio: 49990,
     categoria: "Herramientas Eléctricas",
-    imagen: imagenes.taladro,
+    imagen: imagenProducto("Taladro Percutor 750W"),
     specs: ["750W de potencia", "Mandril 13 mm", "Velocidad variable", "Uso profesional"],
   },
   {
@@ -42,7 +21,7 @@ const productos = [
     marca: "Master Tools",
     precio: 39990,
     categoria: "Herramientas Eléctricas",
-    imagen: imagenes.esmeril,
+    imagen: imagenProducto("Esmeril Angular 4.5"),
     specs: ["850W de potencia", "Disco 115 mm", "Protector ajustable", "Ideal para corte y desbaste"],
   },
   {
@@ -51,7 +30,7 @@ const productos = [
     marca: "FixLine",
     precio: 14990,
     categoria: "Herramientas Manuales",
-    imagen: imagenes.destornilladores,
+    imagen: imagenProducto("Set Destornilladores"),
     specs: ["12 piezas", "Puntas imantadas", "Mango antideslizante", "Alta resistencia"],
   },
   {
@@ -60,7 +39,7 @@ const productos = [
     marca: "ColorMax",
     precio: 21990,
     categoria: "Pinturas",
-    imagen: imagenes.pintura,
+    imagen: imagenProducto("Pintura Interior Blanca"),
     specs: ["Terminación mate", "Secado rápido", "Lavable", "Alto rendimiento"],
   },
   {
@@ -69,7 +48,7 @@ const productos = [
     marca: "LuzPro",
     precio: 3990,
     categoria: "Electricidad",
-    imagen: imagenes.ampolleta,
+    imagen: imagenProducto("Ampolleta LED 12W"),
     specs: ["12W de consumo", "Luz fría", "Alta eficiencia", "Duración prolongada"],
   },
   {
@@ -78,7 +57,7 @@ const productos = [
     marca: "FixLine",
     precio: 6990,
     categoria: "Ferretería General",
-    imagen: imagenes.tornillos,
+    imagen: imagenProducto("Caja de Tornillos"),
     specs: ["200 unidades", "Acero resistente", "Uso interior y exterior", "Ideal para madera y metal"],
   },
   {
@@ -87,7 +66,7 @@ const productos = [
     marca: "PowerCut",
     precio: 89990,
     categoria: "Herramientas Eléctricas",
-    imagen: imagenes.sierra,
+    imagen: imagenProducto("Sierra Circular 1400W"),
     specs: ["1400W de potencia", "Disco 7 1/4”", "Corte preciso", "Guía lateral incluida"],
   },
   {
@@ -96,7 +75,7 @@ const productos = [
     marca: "SafeWork",
     precio: 8990,
     categoria: "Seguridad",
-    imagen: imagenes.casco,
+    imagen: imagenProducto("Casco de Seguridad"),
     specs: ["Alta resistencia", "Ajuste interior", "Uso en obra", "Certificación de seguridad"],
   },
   {
@@ -105,7 +84,7 @@ const productos = [
     marca: "Medix",
     precio: 4990,
     categoria: "Herramientas Manuales",
-    imagen: imagenes.cinta,
+    imagen: imagenProducto("Cinta Metrica 5 Metros"),
     specs: ["5 metros", "Carcasa reforzada", "Seguro de bloqueo", "Medición precisa"],
   },
   {
@@ -114,7 +93,7 @@ const productos = [
     marca: "ElectroFix",
     precio: 12990,
     categoria: "Electricidad",
-    imagen: imagenes.alargador,
+    imagen: imagenProducto("Alargador Electrico"),
     specs: ["5 metros", "3 tomas", "Uso domiciliario", "Cable reforzado"],
   },
   {
@@ -123,7 +102,7 @@ const productos = [
     marca: "SealPro",
     precio: 3990,
     categoria: "Ferretería General",
-    imagen: imagenes.silicona,
+    imagen: imagenProducto("Silicona Multiuso"),
     specs: ["Uso interior y exterior", "Alta adherencia", "Resistente al agua", "Secado rápido"],
   },
   {
@@ -132,7 +111,7 @@ const productos = [
     marca: "AlturaMax",
     precio: 64990,
     categoria: "Construcción",
-    imagen: imagenes.escalera,
+    imagen: imagenProducto("Escalera Aluminio"),
     specs: ["6 peldaños", "Aluminio liviano", "Base antideslizante", "Alta estabilidad"],
   },
   {
@@ -141,7 +120,7 @@ const productos = [
     marca: "ObraMax",
     precio: 54990,
     categoria: "Construcción",
-    imagen: imagenes.carretilla,
+    imagen: imagenProducto("Carretilla Construccion"),
     specs: ["Bandeja metálica", "Rueda reforzada", "Uso en obra", "Alta capacidad"],
   },
   {
@@ -150,7 +129,7 @@ const productos = [
     marca: "SafeWork",
     precio: 5990,
     categoria: "Seguridad",
-    imagen: imagenes.guantes,
+    imagen: imagenProducto("Guantes de Seguridad"),
     specs: ["Antideslizantes", "Resistentes", "Uso industrial", "Cómodos y flexibles"],
   },
   {
@@ -159,7 +138,7 @@ const productos = [
     marca: "ConstruMix",
     precio: 6990,
     categoria: "Construcción",
-    imagen: imagenes.cemento,
+    imagen: imagenProducto("Cemento 25 Kg"),
     specs: ["Saco 25 kg", "Alta resistencia", "Para obra gruesa", "Uso interior y exterior"],
   },
   {
@@ -168,7 +147,7 @@ const productos = [
     marca: "ElectroFix",
     precio: 2490,
     categoria: "Electricidad",
-    imagen: imagenes.interruptor,
+    imagen: imagenProducto("Interruptor Simple"),
     specs: ["Color blanco", "Fácil instalación", "Uso domiciliario", "Material resistente"],
   },
 ];
@@ -179,7 +158,7 @@ const arriendos = [
     nombre: "Demoledor Eléctrico",
     precio: 24990,
     periodo: "por día",
-    imagen: imagenes.demoledor,
+    imagen: imagenProducto("Demoledor Electrico"),
     descripcion: "Ideal para demolición, retiro de cerámica y trabajos pesados.",
   },
   {
@@ -187,7 +166,7 @@ const arriendos = [
     nombre: "Betonera 130 Litros",
     precio: 19990,
     periodo: "por día",
-    imagen: imagenes.betonera,
+    imagen: imagenProducto("Betonera 130 Litros"),
     descripcion: "Perfecta para mezcla de cemento, mortero y hormigón en obra.",
   },
   {
@@ -195,7 +174,7 @@ const arriendos = [
     nombre: "Hidrolavadora Industrial",
     precio: 14990,
     periodo: "por día",
-    imagen: imagenes.hidrolavadora,
+    imagen: imagenProducto("Hidrolavadora Industrial"),
     descripcion: "Limpieza profunda de fachadas, vehículos, pisos y maquinaria.",
   },
 ];
@@ -216,7 +195,6 @@ export default function Home() {
   const [vistaProducto, setVistaProducto] = useState(null);
   const [loginOpen, setLoginOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
-  const [webpayOpen, setWebpayOpen] = useState(false);
   const [usuario, setUsuario] = useState(null);
   const [busqueda, setBusqueda] = useState("");
   const [categoriaActiva, setCategoriaActiva] = useState("Todas");
@@ -258,10 +236,6 @@ export default function Home() {
         behavior: "smooth",
       });
     }, 100);
-  };
-
-  const errorImagen = (e) => {
-    e.currentTarget.src = imagenRespaldo;
   };
 
   return (
@@ -338,8 +312,7 @@ export default function Home() {
             <img
               src={vistaProducto.imagen}
               alt={vistaProducto.nombre}
-              onError={errorImagen}
-              className="w-full h-96 object-cover rounded-[2rem] shadow-xl"
+              className="w-full h-96 object-contain bg-white p-8 rounded-[2rem] shadow-xl"
             />
 
             <div>
@@ -430,8 +403,7 @@ export default function Home() {
                     <img
                       src={p.imagen}
                       alt={p.nombre}
-                      onError={errorImagen}
-                      className="h-32 w-full object-cover"
+                      className="h-32 w-full object-contain bg-white p-4"
                     />
                     <div className="p-4">
                       <p className="text-xs font-bold text-orange-500">
@@ -513,8 +485,7 @@ export default function Home() {
                       <img
                         src={producto.imagen}
                         alt={producto.nombre}
-                        onError={errorImagen}
-                        className="h-56 w-full object-cover"
+                        className="h-56 w-full object-contain bg-white p-6"
                       />
 
                       <div className="p-6">
@@ -584,8 +555,7 @@ export default function Home() {
                     <img
                       src={item.imagen}
                       alt={item.nombre}
-                      onError={errorImagen}
-                      className="h-56 w-full object-cover"
+                      className="h-56 w-full object-contain bg-white p-6"
                     />
 
                     <div className="p-6">
@@ -773,69 +743,20 @@ export default function Home() {
                   </span>
                 </div>
 
-                <div className="bg-red-50 border border-red-200 rounded-2xl p-4">
-                  <p className="font-black text-red-600">Webpay Plus</p>
-                  <p className="text-sm text-slate-600">
-                    Pago seguro con tarjetas de débito, crédito y prepago.
-                    Versión demostrativa para prototipo.
-                  </p>
-                </div>
-
-                <button
-                  onClick={() => {
-                    setCartOpen(false);
-                    setWebpayOpen(true);
-                  }}
-                  className="w-full bg-red-600 text-white py-4 rounded-xl font-black hover:bg-red-700"
+                <a
+                  href="https://wa.me/569XXXXXXXX"
+                  className="block text-center bg-green-500 text-white py-4 rounded-xl font-black hover:bg-green-600"
                 >
-                  Pagar con Webpay
-                </button>
+                  Pagar
+                </a>
               </div>
             )}
-          </div>
-        </div>
-      )}
-
-      {webpayOpen && (
-        <div className="fixed inset-0 z-[120] bg-black/70 flex items-center justify-center px-6">
-          <div className="bg-white rounded-3xl max-w-md w-full p-8 shadow-2xl text-center">
-            <div className="bg-red-600 text-white rounded-2xl py-4 mb-6">
-              <p className="text-3xl font-black">Webpay</p>
-              <p className="text-sm">Plus Demo</p>
-            </div>
-
-            <h2 className="text-3xl font-black">Pago iniciado</h2>
-
-            <p className="text-slate-500 mt-4">
-              En una integración real, el cliente sería redirigido al portal
-              seguro de Webpay para completar el pago.
-            </p>
-
-            <p className="text-orange-500 text-4xl font-black mt-6">
-              ${total.toLocaleString("es-CL")}
-            </p>
-
-            <button
-              onClick={() => {
-                setWebpayOpen(false);
-                setCarrito([]);
-              }}
-              className="w-full mt-8 bg-green-500 text-white py-4 rounded-xl font-black hover:bg-green-600"
-            >
-              Simular pago exitoso
-            </button>
-
-            <button
-              onClick={() => setWebpayOpen(false)}
-              className="w-full mt-3 bg-slate-200 text-slate-900 py-4 rounded-xl font-black hover:bg-slate-300"
-            >
-              Cancelar
-            </button>
           </div>
         </div>
       )}
     </main>
   );
 }
+
 
 
