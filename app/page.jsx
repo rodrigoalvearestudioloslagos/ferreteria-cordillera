@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 
-const imagenRespaldo =
-  "https://images.unsplash.com/photo-1581783898377-1c85bf937427?w=900&auto=format&fit=crop";
+const imagenProducto = (texto) =>
+  `https://placehold.co/900x600/f8fafc/0f172a?text=${encodeURIComponent(texto)}`;
 
 const productos = [
   {
@@ -12,14 +12,8 @@ const productos = [
     marca: "Cordillera Pro",
     precio: 49990,
     categoria: "Herramientas Eléctricas",
-    imagen:
-      "https://images.unsplash.com/photo-1504148455328-c376907d081c?w=900&auto=format&fit=crop",
-    specs: [
-      "750W de potencia",
-      "Mandril 13 mm",
-      "Velocidad variable",
-      "Uso profesional",
-    ],
+    imagen: imagenProducto("Taladro Percutor 750W"),
+    specs: ["750W de potencia", "Mandril 13 mm", "Velocidad variable", "Uso profesional"],
   },
   {
     id: 2,
@@ -27,14 +21,8 @@ const productos = [
     marca: "Master Tools",
     precio: 39990,
     categoria: "Herramientas Eléctricas",
-    imagen:
-      "https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?w=900&auto=format&fit=crop",
-    specs: [
-      "850W de potencia",
-      "Disco 115 mm",
-      "Protector ajustable",
-      "Ideal para corte y desbaste",
-    ],
+    imagen: imagenProducto("Esmeril Angular 4.5"),
+    specs: ["850W de potencia", "Disco 115 mm", "Protector ajustable", "Ideal para corte y desbaste"],
   },
   {
     id: 3,
@@ -42,14 +30,8 @@ const productos = [
     marca: "FixLine",
     precio: 14990,
     categoria: "Herramientas Manuales",
-    imagen:
-      "https://images.unsplash.com/photo-1581783898377-1c85bf937427?w=900&auto=format&fit=crop",
-    specs: [
-      "12 piezas",
-      "Puntas imantadas",
-      "Mango antideslizante",
-      "Alta resistencia",
-    ],
+    imagen: imagenProducto("Set Destornilladores"),
+    specs: ["12 piezas", "Puntas imantadas", "Mango antideslizante", "Alta resistencia"],
   },
   {
     id: 4,
@@ -57,14 +39,8 @@ const productos = [
     marca: "ColorMax",
     precio: 21990,
     categoria: "Pinturas",
-    imagen:
-      "https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=900&auto=format&fit=crop",
-    specs: [
-      "Terminación mate",
-      "Secado rápido",
-      "Lavable",
-      "Alto rendimiento",
-    ],
+    imagen: imagenProducto("Pintura Interior Blanca"),
+    specs: ["Terminación mate", "Secado rápido", "Lavable", "Alto rendimiento"],
   },
   {
     id: 5,
@@ -72,14 +48,8 @@ const productos = [
     marca: "LuzPro",
     precio: 3990,
     categoria: "Electricidad",
-    imagen:
-      "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=900&auto=format&fit=crop",
-    specs: [
-      "12W de consumo",
-      "Luz fría",
-      "Alta eficiencia",
-      "Duración prolongada",
-    ],
+    imagen: imagenProducto("Ampolleta LED 12W"),
+    specs: ["12W de consumo", "Luz fría", "Alta eficiencia", "Duración prolongada"],
   },
   {
     id: 6,
@@ -87,14 +57,8 @@ const productos = [
     marca: "FixLine",
     precio: 6990,
     categoria: "Ferretería General",
-    imagen:
-      "https://images.unsplash.com/photo-1581783898377-1c85bf937427?w=900&auto=format&fit=crop",
-    specs: [
-      "200 unidades",
-      "Acero resistente",
-      "Uso interior y exterior",
-      "Ideal para madera y metal",
-    ],
+    imagen: imagenProducto("Caja de Tornillos"),
+    specs: ["200 unidades", "Acero resistente", "Uso interior y exterior", "Ideal para madera y metal"],
   },
   {
     id: 7,
@@ -102,14 +66,8 @@ const productos = [
     marca: "PowerCut",
     precio: 89990,
     categoria: "Herramientas Eléctricas",
-    imagen:
-      "https://images.unsplash.com/photo-1604709178681-82325c04f8bd?w=900&auto=format&fit=crop",
-    specs: [
-      "1400W de potencia",
-      "Disco 7 1/4”",
-      "Corte preciso",
-      "Guía lateral incluida",
-    ],
+    imagen: imagenProducto("Sierra Circular 1400W"),
+    specs: ["1400W de potencia", "Disco 7 1/4”", "Corte preciso", "Guía lateral incluida"],
   },
   {
     id: 8,
@@ -117,14 +75,8 @@ const productos = [
     marca: "SafeWork",
     precio: 8990,
     categoria: "Seguridad",
-    imagen:
-      "https://images.unsplash.com/photo-1590736969955-71cc94901144?w=900&auto=format&fit=crop",
-    specs: [
-      "Alta resistencia",
-      "Ajuste interior",
-      "Uso en obra",
-      "Certificación de seguridad",
-    ],
+    imagen: imagenProducto("Casco de Seguridad"),
+    specs: ["Alta resistencia", "Ajuste interior", "Uso en obra", "Certificación de seguridad"],
   },
   {
     id: 9,
@@ -132,14 +84,8 @@ const productos = [
     marca: "Medix",
     precio: 4990,
     categoria: "Herramientas Manuales",
-    imagen:
-      "https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?w=900&auto=format&fit=crop",
-    specs: [
-      "5 metros",
-      "Carcasa reforzada",
-      "Seguro de bloqueo",
-      "Medición precisa",
-    ],
+    imagen: imagenProducto("Cinta Metrica 5 Metros"),
+    specs: ["5 metros", "Carcasa reforzada", "Seguro de bloqueo", "Medición precisa"],
   },
   {
     id: 10,
@@ -147,14 +93,8 @@ const productos = [
     marca: "ElectroFix",
     precio: 12990,
     categoria: "Electricidad",
-    imagen:
-      "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=900&auto=format&fit=crop",
-    specs: [
-      "5 metros",
-      "3 tomas",
-      "Uso domiciliario",
-      "Cable reforzado",
-    ],
+    imagen: imagenProducto("Alargador Electrico"),
+    specs: ["5 metros", "3 tomas", "Uso domiciliario", "Cable reforzado"],
   },
   {
     id: 11,
@@ -162,14 +102,8 @@ const productos = [
     marca: "SealPro",
     precio: 3990,
     categoria: "Ferretería General",
-    imagen:
-      "https://images.unsplash.com/photo-1581783898377-1c85bf937427?w=900&auto=format&fit=crop",
-    specs: [
-      "Uso interior y exterior",
-      "Alta adherencia",
-      "Resistente al agua",
-      "Secado rápido",
-    ],
+    imagen: imagenProducto("Silicona Multiuso"),
+    specs: ["Uso interior y exterior", "Alta adherencia", "Resistente al agua", "Secado rápido"],
   },
   {
     id: 12,
@@ -177,14 +111,44 @@ const productos = [
     marca: "AlturaMax",
     precio: 64990,
     categoria: "Construcción",
-    imagen:
-      "https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=900&auto=format&fit=crop",
-    specs: [
-      "6 peldaños",
-      "Aluminio liviano",
-      "Base antideslizante",
-      "Alta estabilidad",
-    ],
+    imagen: imagenProducto("Escalera Aluminio"),
+    specs: ["6 peldaños", "Aluminio liviano", "Base antideslizante", "Alta estabilidad"],
+  },
+  {
+    id: 13,
+    nombre: "Carretilla de Construcción",
+    marca: "ObraMax",
+    precio: 54990,
+    categoria: "Construcción",
+    imagen: imagenProducto("Carretilla Construccion"),
+    specs: ["Bandeja metálica", "Rueda reforzada", "Uso en obra", "Alta capacidad"],
+  },
+  {
+    id: 14,
+    nombre: "Guantes de Seguridad",
+    marca: "SafeWork",
+    precio: 5990,
+    categoria: "Seguridad",
+    imagen: imagenProducto("Guantes de Seguridad"),
+    specs: ["Antideslizantes", "Resistentes", "Uso industrial", "Cómodos y flexibles"],
+  },
+  {
+    id: 15,
+    nombre: "Cemento 25 Kg",
+    marca: "ConstruMix",
+    precio: 6990,
+    categoria: "Construcción",
+    imagen: imagenProducto("Cemento 25 Kg"),
+    specs: ["Saco 25 kg", "Alta resistencia", "Para obra gruesa", "Uso interior y exterior"],
+  },
+  {
+    id: 16,
+    nombre: "Interruptor Simple",
+    marca: "ElectroFix",
+    precio: 2490,
+    categoria: "Electricidad",
+    imagen: imagenProducto("Interruptor Simple"),
+    specs: ["Color blanco", "Fácil instalación", "Uso domiciliario", "Material resistente"],
   },
 ];
 
@@ -194,31 +158,36 @@ const arriendos = [
     nombre: "Demoledor Eléctrico",
     precio: 24990,
     periodo: "por día",
-    imagen:
-      "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=900&auto=format&fit=crop",
-    descripcion:
-      "Ideal para demolición, retiro de cerámica y trabajos pesados.",
+    imagen: imagenProducto("Demoledor Electrico"),
+    descripcion: "Ideal para demolición, retiro de cerámica y trabajos pesados.",
   },
   {
     id: 102,
     nombre: "Betonera 130 Litros",
     precio: 19990,
     periodo: "por día",
-    imagen:
-      "https://images.unsplash.com/photo-1590736969955-71cc94901144?w=900&auto=format&fit=crop",
-    descripcion:
-      "Perfecta para mezcla de cemento, mortero y hormigón en obra.",
+    imagen: imagenProducto("Betonera 130 Litros"),
+    descripcion: "Perfecta para mezcla de cemento, mortero y hormigón en obra.",
   },
   {
     id: 103,
     nombre: "Hidrolavadora Industrial",
     precio: 14990,
     periodo: "por día",
-    imagen:
-      "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=900&auto=format&fit=crop",
-    descripcion:
-      "Limpieza profunda de fachadas, vehículos, pisos y maquinaria.",
+    imagen: imagenProducto("Hidrolavadora Industrial"),
+    descripcion: "Limpieza profunda de fachadas, vehículos, pisos y maquinaria.",
   },
+];
+
+const categorias = [
+  "Todas",
+  "Herramientas Eléctricas",
+  "Herramientas Manuales",
+  "Construcción",
+  "Seguridad",
+  "Pinturas",
+  "Electricidad",
+  "Ferretería General",
 ];
 
 export default function Home() {
@@ -228,15 +197,21 @@ export default function Home() {
   const [cartOpen, setCartOpen] = useState(false);
   const [usuario, setUsuario] = useState(null);
   const [busqueda, setBusqueda] = useState("");
+  const [categoriaActiva, setCategoriaActiva] = useState("Todas");
 
   const total = carrito.reduce((acc, item) => acc + item.precio, 0);
 
-  const productosFiltrados = productos.filter(
-    (producto) =>
+  const productosFiltrados = productos.filter((producto) => {
+    const coincideBusqueda =
       producto.nombre.toLowerCase().includes(busqueda.toLowerCase()) ||
       producto.categoria.toLowerCase().includes(busqueda.toLowerCase()) ||
-      producto.marca.toLowerCase().includes(busqueda.toLowerCase())
-  );
+      producto.marca.toLowerCase().includes(busqueda.toLowerCase());
+
+    const coincideCategoria =
+      categoriaActiva === "Todas" || producto.categoria === categoriaActiva;
+
+    return coincideBusqueda && coincideCategoria;
+  });
 
   const agregarCarrito = (producto) => {
     setCarrito([...carrito, producto]);
@@ -253,8 +228,14 @@ export default function Home() {
     setLoginOpen(false);
   };
 
-  const errorImagen = (e) => {
-    e.currentTarget.src = imagenRespaldo;
+  const seleccionarCategoria = (categoria) => {
+    setCategoriaActiva(categoria);
+    setVistaProducto(null);
+    setTimeout(() => {
+      document.getElementById("productos")?.scrollIntoView({
+        behavior: "smooth",
+      });
+    }, 100);
   };
 
   return (
@@ -331,7 +312,6 @@ export default function Home() {
             <img
               src={vistaProducto.imagen}
               alt={vistaProducto.nombre}
-              onError={errorImagen}
               className="w-full h-96 object-contain bg-white p-8 rounded-[2rem] shadow-xl"
             />
 
@@ -343,13 +323,9 @@ export default function Home() {
                 ← Volver al catálogo
               </button>
 
-              <p className="text-orange-500 font-black">
-                {vistaProducto.marca}
-              </p>
+              <p className="text-orange-500 font-black">{vistaProducto.marca}</p>
 
-              <h2 className="text-5xl font-black mt-2">
-                {vistaProducto.nombre}
-              </h2>
+              <h2 className="text-5xl font-black mt-2">{vistaProducto.nombre}</h2>
 
               <p className="text-slate-500 mt-4">
                 Categoría: {vistaProducto.categoria}
@@ -427,7 +403,6 @@ export default function Home() {
                     <img
                       src={p.imagen}
                       alt={p.nombre}
-                      onError={errorImagen}
                       className="h-32 w-full object-contain bg-white p-4"
                     />
                     <div className="p-4">
@@ -450,25 +425,24 @@ export default function Home() {
               <p className="text-orange-500 font-black text-center">
                 CATEGORÍAS
               </p>
+
               <h2 className="text-5xl font-black text-center mb-12">
                 Compra por sección
               </h2>
 
-              <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-6">
-                {[
-                  "⚡ Eléctricas",
-                  "🔧 Manuales",
-                  "🏗️ Construcción",
-                  "🦺 Seguridad",
-                  "🎨 Pinturas",
-                  "💡 Electricidad",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="bg-white rounded-3xl p-6 shadow-lg hover:-translate-y-2 transition cursor-pointer text-center font-black"
+              <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {categorias.map((categoria) => (
+                  <button
+                    key={categoria}
+                    onClick={() => seleccionarCategoria(categoria)}
+                    className={`rounded-3xl p-6 shadow-lg hover:-translate-y-2 transition cursor-pointer text-center font-black ${
+                      categoriaActiva === categoria
+                        ? "bg-orange-500 text-white"
+                        : "bg-white text-slate-900"
+                    }`}
                   >
-                    {item}
-                  </div>
+                    {categoria}
+                  </button>
                 ))}
               </div>
             </div>
@@ -479,22 +453,27 @@ export default function Home() {
               <p className="text-orange-500 font-black text-center">
                 CATÁLOGO
               </p>
-              <h2 className="text-5xl font-black text-center mb-12">
-                Productos disponibles
+
+              <h2 className="text-5xl font-black text-center mb-6">
+                {categoriaActiva === "Todas"
+                  ? "Productos disponibles"
+                  : categoriaActiva}
               </h2>
+
+              <p className="text-center text-slate-500 mb-12">
+                {productosFiltrados.length} productos encontrados
+              </p>
 
               {busqueda && (
                 <p className="text-center mb-10 text-slate-500">
                   Resultados para:{" "}
-                  <span className="font-black text-slate-900">
-                    {busqueda}
-                  </span>
+                  <span className="font-black text-slate-900">{busqueda}</span>
                 </p>
               )}
 
               {productosFiltrados.length === 0 ? (
                 <p className="text-center text-slate-500 text-xl">
-                  No encontramos productos con esa búsqueda.
+                  No encontramos productos con esa búsqueda o categoría.
                 </p>
               ) : (
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -506,7 +485,6 @@ export default function Home() {
                       <img
                         src={producto.imagen}
                         alt={producto.nombre}
-                        onError={errorImagen}
                         className="h-56 w-full object-contain bg-white p-6"
                       />
 
@@ -565,8 +543,7 @@ export default function Home() {
 
               <p className="text-center text-slate-500 max-w-3xl mx-auto mb-12">
                 Arrienda herramientas profesionales sin comprar equipos costosos.
-                Ideal para obras, remodelaciones, mantenciones y trabajos
-                puntuales.
+                Ideal para obras, remodelaciones, mantenciones y trabajos puntuales.
               </p>
 
               <div className="grid md:grid-cols-3 gap-8">
@@ -578,7 +555,6 @@ export default function Home() {
                     <img
                       src={item.imagen}
                       alt={item.nombre}
-                      onError={errorImagen}
                       className="h-56 w-full object-contain bg-white p-6"
                     />
 
@@ -614,36 +590,12 @@ export default function Home() {
 
               <div className="grid md:grid-cols-3 gap-8">
                 {[
-                  [
-                    "🚚",
-                    "Despacho rápido",
-                    "Recibe tus productos de forma rápida y segura.",
-                  ],
-                  [
-                    "💲",
-                    "Precios competitivos",
-                    "Ofertas y valores convenientes para tus proyectos.",
-                  ],
-                  [
-                    "🏆",
-                    "Productos de calidad",
-                    "Trabajamos con marcas reconocidas y confiables.",
-                  ],
-                  [
-                    "📞",
-                    "Asesoría especializada",
-                    "Te ayudamos a elegir el producto correcto.",
-                  ],
-                  [
-                    "📦",
-                    "Amplio stock",
-                    "Gran variedad de herramientas y materiales.",
-                  ],
-                  [
-                    "🔒",
-                    "Compra segura",
-                    "Proceso simple y confiable para cotizar o comprar.",
-                  ],
+                  ["🚚", "Despacho rápido", "Recibe tus productos de forma rápida y segura."],
+                  ["💲", "Precios competitivos", "Ofertas y valores convenientes para tus proyectos."],
+                  ["🏆", "Productos de calidad", "Trabajamos con marcas reconocidas y confiables."],
+                  ["📞", "Asesoría especializada", "Te ayudamos a elegir el producto correcto."],
+                  ["📦", "Amplio stock", "Gran variedad de herramientas y materiales."],
+                  ["🔒", "Compra segura", "Proceso simple y confiable para cotizar o comprar."],
                 ].map(([icono, titulo, texto]) => (
                   <div
                     key={titulo}
