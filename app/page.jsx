@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 const imagenProducto = (texto) =>
-  `https://placehold.co/900x600/f8fafc/0f172a?text=${encodeURIComponent(texto)}`;
+  `https://source.unsplash.com/900x600/?${encodeURIComponent(texto)}`;
 
 const productos = [
   {
@@ -743,12 +743,16 @@ export default function Home() {
                   </span>
                 </div>
 
-                <a
-                  href="https://wa.me/569XXXXXXXX"
-                  className="block text-center bg-green-500 text-white py-4 rounded-xl font-black hover:bg-green-600"
-                >
-                  Pagar
-                </a>
+                <button
+  onClick={() => {
+    alert(
+      "Demo Webpay Plus: aquí el cliente sería redirigido al portal de pago seguro."
+    );
+  }}
+  className="w-full bg-red-600 text-white py-4 rounded-xl font-black hover:bg-red-700"
+>
+  Pagar con Webpay
+</button>
               </div>
             )}
           </div>
