@@ -100,9 +100,9 @@ export default function Home() {
       </div>
 
       <header className="sticky top-0 z-50 bg-slate-950 text-white shadow-xl">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-black">
+            <h1 className="text-xl md:text-2xl font-black">
               FERRETERÍA <span className="text-orange-500">CORDILLERA</span>
             </h1>
             <p className="text-xs text-slate-400">
@@ -110,30 +110,17 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="hidden lg:flex flex-1 max-w-xl">
-            <input
-              value={busqueda}
-              onChange={(e) => setBusqueda(e.target.value)}
-              className="w-full rounded-l-xl px-5 py-3 text-black text-lg font-semibold bg-white placeholder:text-slate-400 outline-none"
-              placeholder="Buscar productos..."
-            />
-
-            <button className="bg-orange-500 px-6 rounded-r-xl font-black hover:bg-orange-600">
-              Buscar
-            </button>
-          </div>
-
-          <div className="flex gap-3">
+          <div className="flex gap-2 md:gap-3">
             <button
               onClick={() => setLoginOpen(true)}
-              className="bg-slate-800 px-4 py-3 rounded-xl font-bold hover:bg-slate-700"
+              className="bg-slate-800 px-3 md:px-4 py-3 rounded-xl text-sm md:text-base font-bold hover:bg-slate-700"
             >
               {usuario ? `Hola, ${usuario}` : "Iniciar sesión"}
             </button>
 
             <button
               onClick={() => setCartOpen(true)}
-              className="relative bg-orange-500 px-4 py-3 rounded-xl font-black hover:bg-orange-600"
+              className="relative bg-orange-500 px-3 md:px-4 py-3 rounded-xl text-sm md:text-base font-black hover:bg-orange-600"
             >
               🛒 Carrito
               {carrito.length > 0 && (
@@ -141,6 +128,21 @@ export default function Home() {
                   {carrito.length}
                 </span>
               )}
+            </button>
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 pb-4">
+          <div className="flex w-full">
+            <input
+              value={busqueda}
+              onChange={(e) => setBusqueda(e.target.value)}
+              className="w-full rounded-l-xl px-5 py-3 text-black text-base md:text-lg font-semibold bg-white placeholder:text-slate-400 outline-none"
+              placeholder="Buscar productos..."
+            />
+
+            <button className="bg-orange-500 px-5 md:px-8 rounded-r-xl font-black text-white hover:bg-orange-600">
+              Buscar
             </button>
           </div>
         </div>
