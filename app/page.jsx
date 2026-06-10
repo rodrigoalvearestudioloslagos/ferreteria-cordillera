@@ -9,13 +9,8 @@ const productos = [
     marca: "Cordillera Pro",
     precio: 49990,
     categoria: "Herramientas Eléctricas",
-    emoji: "🔩",
-    specs: [
-      "750W de potencia",
-      "Mandril 13 mm",
-      "Velocidad variable",
-      "Uso profesional",
-    ],
+    emoji: "🛠️",
+    specs: ["750W de potencia", "Mandril 13 mm", "Velocidad variable", "Uso profesional"],
   },
   {
     id: 2,
@@ -24,12 +19,7 @@ const productos = [
     precio: 39990,
     categoria: "Herramientas Eléctricas",
     emoji: "⚙️",
-    specs: [
-      "850W de potencia",
-      "Disco 115 mm",
-      "Protector ajustable",
-      "Ideal para corte y desbaste",
-    ],
+    specs: ["850W de potencia", "Disco 115 mm", "Protector ajustable", "Ideal para corte y desbaste"],
   },
   {
     id: 3,
@@ -38,12 +28,7 @@ const productos = [
     precio: 14990,
     categoria: "Herramientas Manuales",
     emoji: "🪛",
-    specs: [
-      "12 piezas",
-      "Puntas imantadas",
-      "Mango antideslizante",
-      "Alta resistencia",
-    ],
+    specs: ["12 piezas", "Puntas imantadas", "Mango antideslizante", "Alta resistencia"],
   },
   {
     id: 4,
@@ -52,12 +37,7 @@ const productos = [
     precio: 21990,
     categoria: "Pinturas",
     emoji: "🎨",
-    specs: [
-      "Terminación mate",
-      "Secado rápido",
-      "Lavable",
-      "Alto rendimiento",
-    ],
+    specs: ["Terminación mate", "Secado rápido", "Lavable", "Alto rendimiento"],
   },
   {
     id: 5,
@@ -66,12 +46,7 @@ const productos = [
     precio: 3990,
     categoria: "Electricidad",
     emoji: "💡",
-    specs: [
-      "12W de consumo",
-      "Luz fría",
-      "Alta eficiencia",
-      "Duración prolongada",
-    ],
+    specs: ["12W de consumo", "Luz fría", "Alta eficiencia", "Duración prolongada"],
   },
   {
     id: 6,
@@ -79,19 +54,13 @@ const productos = [
     marca: "FixLine",
     precio: 6990,
     categoria: "Ferretería General",
-    emoji: "🔩",
-    specs: [
-      "200 unidades",
-      "Acero resistente",
-      "Uso interior y exterior",
-      "Ideal para madera y metal",
-    ],
+    emoji: "🔧",
+    specs: ["200 unidades", "Acero resistente", "Uso interior y exterior", "Ideal para madera y metal"],
   },
 ];
 
 export default function Home() {
   const [carrito, setCarrito] = useState([]);
-  const [productoActivo, setProductoActivo] = useState(null);
   const [vistaProducto, setVistaProducto] = useState(null);
   const [loginOpen, setLoginOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
@@ -126,7 +95,7 @@ export default function Home() {
       <div className="bg-orange-500 text-white text-sm font-bold">
         <div className="max-w-7xl mx-auto px-6 py-2 flex justify-between">
           <span>🚚 Retiro en tienda y despacho a domicilio</span>
-          <span>📞 +56 9 XXXX XXXX</span>
+          <span className="hidden md:block">📞 +56 9 XXXX XXXX</span>
         </div>
       </div>
 
@@ -145,10 +114,11 @@ export default function Home() {
             <input
               value={busqueda}
               onChange={(e) => setBusqueda(e.target.value)}
-              className="w-full rounded-l-xl px-4 py-3 text-slate-900 outline-none"
-              placeholder="Buscar taladros, pinturas, herramientas..."
+              className="w-full rounded-l-xl px-5 py-3 text-black text-lg font-semibold bg-white placeholder:text-slate-400 outline-none"
+              placeholder="Buscar productos..."
             />
-            <button className="bg-orange-500 px-6 rounded-r-xl font-black">
+
+            <button className="bg-orange-500 px-6 rounded-r-xl font-black hover:bg-orange-600">
               Buscar
             </button>
           </div>
@@ -200,9 +170,7 @@ export default function Home() {
                 ← Volver a productos
               </button>
 
-              <p className="text-orange-500 font-black">
-                {vistaProducto.marca}
-              </p>
+              <p className="text-orange-500 font-black">{vistaProducto.marca}</p>
 
               <h2 className="text-5xl font-black mt-2">
                 {vistaProducto.nombre}
@@ -265,6 +233,7 @@ export default function Home() {
                   >
                     Ver productos
                   </a>
+
                   <a
                     href="#contacto"
                     className="border border-white px-8 py-4 rounded-xl font-black hover:bg-white hover:text-slate-950"
@@ -301,6 +270,7 @@ export default function Home() {
               <p className="text-orange-500 font-black text-center">
                 CATEGORÍAS
               </p>
+
               <h2 className="text-5xl font-black text-center mb-12">
                 Compra por sección
               </h2>
@@ -330,9 +300,19 @@ export default function Home() {
               <p className="text-orange-500 font-black text-center">
                 PRODUCTOS DESTACADOS
               </p>
+
               <h2 className="text-5xl font-black text-center mb-12">
                 Ofertas y recomendados
               </h2>
+
+              {busqueda && (
+                <p className="text-center mb-10 text-slate-500">
+                  Resultados para:{" "}
+                  <span className="font-black text-slate-900">
+                    {busqueda}
+                  </span>
+                </p>
+              )}
 
               {productosFiltrados.length === 0 ? (
                 <p className="text-center text-slate-500 text-xl">
@@ -353,9 +333,11 @@ export default function Home() {
                         <p className="text-xs font-black text-orange-500">
                           {producto.marca}
                         </p>
+
                         <h3 className="text-xl font-black mt-1">
                           {producto.nombre}
                         </h3>
+
                         <p className="text-sm text-slate-500 mt-1">
                           {producto.categoria}
                         </p>
@@ -393,19 +375,22 @@ export default function Home() {
           <section className="py-20 bg-slate-100">
             <div className="max-w-6xl mx-auto px-6">
               <h2 className="text-5xl font-black text-center mb-12">
-                Una experiencia más avanzada
+                ¿Por qué comprar con nosotros?
               </h2>
 
               <div className="grid md:grid-cols-3 gap-8">
                 {[
-                  ["🛒", "Carrito de compras", "Agrega y elimina productos."],
-                  ["👤", "Inicio de sesión", "Demo visual de cuenta de cliente."],
-                  ["🔍", "Buscador funcional", "Encuentra productos por nombre, marca o categoría."],
-                  ["📦", "Detalle de producto", "Vista individual con especificaciones."],
-                  ["💬", "Cotización rápida", "Contacto directo por WhatsApp."],
-                  ["⭐", "Imagen profesional", "Diseño moderno para vender mejor."],
+                  ["🚚", "Despacho rápido", "Recibe tus productos de forma rápida y segura."],
+                  ["💲", "Precios competitivos", "Ofertas y valores convenientes para tus proyectos."],
+                  ["🏆", "Productos de calidad", "Trabajamos con marcas reconocidas y confiables."],
+                  ["📞", "Asesoría especializada", "Te ayudamos a elegir el producto correcto."],
+                  ["📦", "Amplio stock", "Gran variedad de herramientas y materiales."],
+                  ["🔒", "Compra segura", "Proceso simple y confiable para cotizar o comprar."],
                 ].map(([icono, titulo, texto]) => (
-                  <div key={titulo} className="bg-white rounded-3xl p-8 shadow-lg">
+                  <div
+                    key={titulo}
+                    className="bg-white rounded-3xl p-8 shadow-lg"
+                  >
                     <div className="text-4xl">{icono}</div>
                     <h3 className="font-black text-xl mt-4">{titulo}</h3>
                     <p className="text-slate-500 mt-3">{texto}</p>
@@ -418,6 +403,7 @@ export default function Home() {
           <section id="contacto" className="bg-slate-950 text-white py-20">
             <div className="max-w-6xl mx-auto px-6 text-center">
               <p className="text-orange-500 font-black">CONTACTO</p>
+
               <h2 className="text-5xl font-black mt-4">
                 Solicita tu cotización
               </h2>
@@ -457,45 +443,6 @@ export default function Home() {
         © 2026 Ferretería Cordillera — Sitio ecommerce demostrativo
       </footer>
 
-      {productoActivo && (
-        <div className="fixed inset-0 z-[100] bg-black/60 flex items-center justify-center px-6">
-          <div className="bg-white rounded-3xl max-w-lg w-full p-8 shadow-2xl">
-            <button
-              onClick={() => setProductoActivo(null)}
-              className="float-right text-2xl font-black"
-            >
-              ×
-            </button>
-
-            <div className="text-8xl text-center">{productoActivo.emoji}</div>
-            <p className="text-orange-500 font-black mt-4">
-              {productoActivo.marca}
-            </p>
-            <h2 className="text-3xl font-black">{productoActivo.nombre}</h2>
-            <p className="text-4xl font-black text-orange-500 mt-3">
-              ${productoActivo.precio.toLocaleString("es-CL")}
-            </p>
-
-            <h3 className="font-black mt-6 mb-3">Especificaciones</h3>
-            <ul className="space-y-2">
-              {productoActivo.specs.map((spec) => (
-                <li key={spec}>✅ {spec}</li>
-              ))}
-            </ul>
-
-            <button
-              onClick={() => {
-                agregarCarrito(productoActivo);
-                setProductoActivo(null);
-              }}
-              className="w-full mt-8 bg-orange-500 text-white py-4 rounded-xl font-black hover:bg-orange-600"
-            >
-              Agregar al carrito
-            </button>
-          </div>
-        </div>
-      )}
-
       {loginOpen && (
         <div className="fixed inset-0 z-[100] bg-black/60 flex items-center justify-center px-6">
           <form
@@ -511,16 +458,18 @@ export default function Home() {
             </button>
 
             <h2 className="text-3xl font-black mb-2">Iniciar sesión</h2>
+
             <p className="text-slate-500 mb-6">
               Accede a tus cotizaciones y compras.
             </p>
 
             <input
-              className="w-full border rounded-xl px-4 py-3 mb-4"
+              className="w-full border rounded-xl px-4 py-3 mb-4 text-black"
               placeholder="Correo electrónico"
             />
+
             <input
-              className="w-full border rounded-xl px-4 py-3 mb-6"
+              className="w-full border rounded-xl px-4 py-3 mb-6 text-black"
               placeholder="Contraseña"
               type="password"
             />
@@ -598,3 +547,4 @@ export default function Home() {
     </main>
   );
 }
+
