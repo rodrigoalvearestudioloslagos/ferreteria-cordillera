@@ -9,7 +9,7 @@ const productos = [
     marca: "Cordillera Pro",
     precio: 49990,
     categoria: "Herramientas Eléctricas",
-    emoji: "🛠️",
+    imagen: "https://images.unsplash.com/photo-1504148455328-c376907d081c?w=900&auto=format&fit=crop",
     specs: ["750W de potencia", "Mandril 13 mm", "Velocidad variable", "Uso profesional"],
   },
   {
@@ -18,7 +18,7 @@ const productos = [
     marca: "Master Tools",
     precio: 39990,
     categoria: "Herramientas Eléctricas",
-    emoji: "⚙️",
+    imagen: "https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?w=900&auto=format&fit=crop",
     specs: ["850W de potencia", "Disco 115 mm", "Protector ajustable", "Ideal para corte y desbaste"],
   },
   {
@@ -27,7 +27,7 @@ const productos = [
     marca: "FixLine",
     precio: 14990,
     categoria: "Herramientas Manuales",
-    emoji: "🪛",
+    imagen: "https://images.unsplash.com/photo-1609205807107-e8ec2120f9de?w=900&auto=format&fit=crop",
     specs: ["12 piezas", "Puntas imantadas", "Mango antideslizante", "Alta resistencia"],
   },
   {
@@ -36,7 +36,7 @@ const productos = [
     marca: "ColorMax",
     precio: 21990,
     categoria: "Pinturas",
-    emoji: "🎨",
+    imagen: "https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=900&auto=format&fit=crop",
     specs: ["Terminación mate", "Secado rápido", "Lavable", "Alto rendimiento"],
   },
   {
@@ -45,7 +45,7 @@ const productos = [
     marca: "LuzPro",
     precio: 3990,
     categoria: "Electricidad",
-    emoji: "💡",
+    imagen: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=900&auto=format&fit=crop",
     specs: ["12W de consumo", "Luz fría", "Alta eficiencia", "Duración prolongada"],
   },
   {
@@ -54,8 +54,89 @@ const productos = [
     marca: "FixLine",
     precio: 6990,
     categoria: "Ferretería General",
-    emoji: "🔧",
+    imagen: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=900&auto=format&fit=crop",
     specs: ["200 unidades", "Acero resistente", "Uso interior y exterior", "Ideal para madera y metal"],
+  },
+  {
+    id: 7,
+    nombre: "Sierra Circular 1400W",
+    marca: "PowerCut",
+    precio: 89990,
+    categoria: "Herramientas Eléctricas",
+    imagen: "https://images.unsplash.com/photo-1604709178681-82325c04f8bd?w=900&auto=format&fit=crop",
+    specs: ["1400W", "Disco 7 1/4”", "Corte preciso", "Guía lateral incluida"],
+  },
+  {
+    id: 8,
+    nombre: "Casco de Seguridad",
+    marca: "SafeWork",
+    precio: 8990,
+    categoria: "Seguridad",
+    imagen: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=900&auto=format&fit=crop",
+    specs: ["Alta resistencia", "Ajuste interior", "Uso en obra", "Certificación de seguridad"],
+  },
+  {
+    id: 9,
+    nombre: "Cinta Métrica 5 Metros",
+    marca: "Medix",
+    precio: 4990,
+    categoria: "Herramientas Manuales",
+    imagen: "https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?w=900&auto=format&fit=crop",
+    specs: ["5 metros", "Carcasa reforzada", "Seguro de bloqueo", "Medición precisa"],
+  },
+  {
+    id: 10,
+    nombre: "Alargador Eléctrico 5 Metros",
+    marca: "ElectroFix",
+    precio: 12990,
+    categoria: "Electricidad",
+    imagen: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=900&auto=format&fit=crop",
+    specs: ["5 metros", "3 tomas", "Uso domiciliario", "Cable reforzado"],
+  },
+  {
+    id: 11,
+    nombre: "Silicona Multiuso Transparente",
+    marca: "SealPro",
+    precio: 3990,
+    categoria: "Ferretería General",
+    imagen: "https://images.unsplash.com/photo-1581783898377-1c85bf937427?w=900&auto=format&fit=crop",
+    specs: ["Uso interior y exterior", "Alta adherencia", "Resistente al agua", "Secado rápido"],
+  },
+  {
+    id: 12,
+    nombre: "Escalera Aluminio 6 Peldaños",
+    marca: "AlturaMax",
+    precio: 64990,
+    categoria: "Construcción",
+    imagen: "https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=900&auto=format&fit=crop",
+    specs: ["6 peldaños", "Aluminio liviano", "Base antideslizante", "Alta estabilidad"],
+  },
+];
+
+const arriendos = [
+  {
+    id: 101,
+    nombre: "Demoledor Eléctrico",
+    precio: 24990,
+    periodo: "por día",
+    imagen: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=900&auto=format&fit=crop",
+    descripcion: "Ideal para demolición, retiro de cerámica y trabajos pesados.",
+  },
+  {
+    id: 102,
+    nombre: "Betonera 130 Litros",
+    precio: 19990,
+    periodo: "por día",
+    imagen: "https://images.unsplash.com/photo-1590736969955-71cc94901144?w=900&auto=format&fit=crop",
+    descripcion: "Perfecta para mezcla de cemento, mortero y hormigón en obra.",
+  },
+  {
+    id: 103,
+    nombre: "Hidrolavadora Industrial",
+    precio: 14990,
+    periodo: "por día",
+    imagen: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=900&auto=format&fit=crop",
+    descripcion: "Limpieza profunda de fachadas, vehículos, pisos y maquinaria.",
   },
 ];
 
@@ -106,7 +187,7 @@ export default function Home() {
               FERRETERÍA <span className="text-orange-500">CORDILLERA</span>
             </h1>
             <p className="text-xs text-slate-400">
-              Todo para construir, reparar y mejorar
+              Venta y arriendo de herramientas
             </p>
           </div>
 
@@ -138,7 +219,7 @@ export default function Home() {
               value={busqueda}
               onChange={(e) => setBusqueda(e.target.value)}
               className="w-full rounded-l-xl px-5 py-3 text-black text-base md:text-lg font-semibold bg-white placeholder:text-slate-400 outline-none"
-              placeholder="Buscar productos..."
+              placeholder="Buscar productos, herramientas o arriendos..."
             />
 
             <button className="bg-orange-500 px-5 md:px-8 rounded-r-xl font-black text-white hover:bg-orange-600">
@@ -151,7 +232,8 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-6 py-3 flex gap-8 overflow-x-auto text-sm font-bold">
             <a href="#inicio">Inicio</a>
             <a href="#categorias">Categorías</a>
-            <a href="#productos">Productos</a>
+            <a href="#productos">Catálogo</a>
+            <a href="#arriendos">Arriendos</a>
             <a href="#contacto">Contacto</a>
           </div>
         </nav>
@@ -160,23 +242,23 @@ export default function Home() {
       {vistaProducto && (
         <section className="bg-white py-20">
           <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-            <div className="bg-slate-100 rounded-[2rem] h-96 flex items-center justify-center text-9xl shadow-xl">
-              {vistaProducto.emoji}
-            </div>
+            <img
+              src={vistaProducto.imagen}
+              alt={vistaProducto.nombre}
+              className="w-full h-96 object-cover rounded-[2rem] shadow-xl"
+            />
 
             <div>
               <button
                 onClick={() => setVistaProducto(null)}
                 className="mb-6 text-orange-500 font-black"
               >
-                ← Volver a productos
+                ← Volver al catálogo
               </button>
 
               <p className="text-orange-500 font-black">{vistaProducto.marca}</p>
 
-              <h2 className="text-5xl font-black mt-2">
-                {vistaProducto.nombre}
-              </h2>
+              <h2 className="text-5xl font-black mt-2">{vistaProducto.nombre}</h2>
 
               <p className="text-slate-500 mt-4">
                 Categoría: {vistaProducto.categoria}
@@ -186,9 +268,7 @@ export default function Home() {
                 ${vistaProducto.precio.toLocaleString("es-CL")}
               </p>
 
-              <h3 className="font-black text-2xl mt-8 mb-4">
-                Especificaciones
-              </h3>
+              <h3 className="font-black text-2xl mt-8 mb-4">Especificaciones</h3>
 
               <ul className="space-y-3">
                 {vistaProducto.specs.map((spec) => (
@@ -220,12 +300,12 @@ export default function Home() {
                 </p>
 
                 <h2 className="text-5xl md:text-7xl font-black leading-tight">
-                  Compra fácil, rápido y con asesoría experta
+                  Compra y arrienda herramientas en un solo lugar
                 </h2>
 
                 <p className="mt-8 text-xl text-slate-300">
-                  Herramientas, materiales, pinturas, electricidad y productos
-                  para construcción, con cotización directa por WhatsApp.
+                  Herramientas, materiales, pinturas, electricidad, seguridad y
+                  equipos de arriendo para construcción, reparación y mantención.
                 </p>
 
                 <div className="mt-10 flex gap-4 flex-wrap">
@@ -233,46 +313,38 @@ export default function Home() {
                     href="#productos"
                     className="bg-orange-500 px-8 py-4 rounded-xl font-black hover:bg-orange-600"
                   >
-                    Ver productos
+                    Ver catálogo
                   </a>
 
                   <a
-                    href="#contacto"
+                    href="#arriendos"
                     className="border border-white px-8 py-4 rounded-xl font-black hover:bg-white hover:text-slate-950"
                   >
-                    Solicitar cotización
+                    Ver arriendos
                   </a>
                 </div>
               </div>
 
-              <div className="bg-white/10 backdrop-blur rounded-[2rem] p-8 shadow-2xl border border-white/10">
-                <div className="grid grid-cols-2 gap-4">
-                  {productos.slice(0, 4).map((p) => (
-                    <div
-                      key={p.id}
-                      className="bg-white text-slate-900 rounded-3xl p-5 shadow-xl"
-                    >
-                      <div className="text-5xl mb-4">{p.emoji}</div>
-                      <p className="text-xs font-bold text-orange-500">
-                        {p.marca}
-                      </p>
-                      <h3 className="font-black">{p.nombre}</h3>
-                      <p className="font-black text-xl mt-2">
+              <div className="grid grid-cols-2 gap-4">
+                {productos.slice(0, 4).map((p) => (
+                  <div key={p.id} className="bg-white text-slate-900 rounded-3xl overflow-hidden shadow-xl">
+                    <img src={p.imagen} alt={p.nombre} className="h-32 w-full object-cover" />
+                    <div className="p-4">
+                      <p className="text-xs font-bold text-orange-500">{p.marca}</p>
+                      <h3 className="font-black text-sm">{p.nombre}</h3>
+                      <p className="font-black text-lg mt-2">
                         ${p.precio.toLocaleString("es-CL")}
                       </p>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
             </div>
           </section>
 
           <section id="categorias" className="py-20">
             <div className="max-w-7xl mx-auto px-6">
-              <p className="text-orange-500 font-black text-center">
-                CATEGORÍAS
-              </p>
-
+              <p className="text-orange-500 font-black text-center">CATEGORÍAS</p>
               <h2 className="text-5xl font-black text-center mb-12">
                 Compra por sección
               </h2>
@@ -282,7 +354,7 @@ export default function Home() {
                   "⚡ Eléctricas",
                   "🔧 Manuales",
                   "🏗️ Construcción",
-                  "🧰 Ferretería",
+                  "🦺 Seguridad",
                   "🎨 Pinturas",
                   "💡 Electricidad",
                 ].map((item) => (
@@ -299,20 +371,15 @@ export default function Home() {
 
           <section id="productos" className="bg-white py-20">
             <div className="max-w-7xl mx-auto px-6">
-              <p className="text-orange-500 font-black text-center">
-                PRODUCTOS DESTACADOS
-              </p>
-
+              <p className="text-orange-500 font-black text-center">CATÁLOGO</p>
               <h2 className="text-5xl font-black text-center mb-12">
-                Ofertas y recomendados
+                Productos disponibles
               </h2>
 
               {busqueda && (
                 <p className="text-center mb-10 text-slate-500">
                   Resultados para:{" "}
-                  <span className="font-black text-slate-900">
-                    {busqueda}
-                  </span>
+                  <span className="font-black text-slate-900">{busqueda}</span>
                 </p>
               )}
 
@@ -327,9 +394,11 @@ export default function Home() {
                       key={producto.id}
                       className="rounded-3xl overflow-hidden bg-slate-50 shadow-xl border border-slate-100"
                     >
-                      <div className="h-56 bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center text-8xl">
-                        {producto.emoji}
-                      </div>
+                      <img
+                        src={producto.imagen}
+                        alt={producto.nombre}
+                        className="h-56 w-full object-cover"
+                      />
 
                       <div className="p-6">
                         <p className="text-xs font-black text-orange-500">
@@ -374,7 +443,51 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="py-20 bg-slate-100">
+          <section id="arriendos" className="py-20 bg-slate-100">
+            <div className="max-w-7xl mx-auto px-6">
+              <p className="text-orange-500 font-black text-center">
+                ARRIENDO DE HERRAMIENTAS
+              </p>
+
+              <h2 className="text-5xl font-black text-center mb-6">
+                Equipos para trabajos por día o semana
+              </h2>
+
+              <p className="text-center text-slate-500 max-w-3xl mx-auto mb-12">
+                Arrienda herramientas profesionales sin comprar equipos costosos.
+                Ideal para obras, remodelaciones, mantenciones y trabajos puntuales.
+              </p>
+
+              <div className="grid md:grid-cols-3 gap-8">
+                {arriendos.map((item) => (
+                  <div key={item.id} className="bg-white rounded-3xl overflow-hidden shadow-xl">
+                    <img src={item.imagen} alt={item.nombre} className="h-56 w-full object-cover" />
+
+                    <div className="p-6">
+                      <h3 className="text-2xl font-black">{item.nombre}</h3>
+                      <p className="text-slate-500 mt-3">{item.descripcion}</p>
+
+                      <p className="text-orange-500 text-3xl font-black mt-5">
+                        ${item.precio.toLocaleString("es-CL")}{" "}
+                        <span className="text-base text-slate-500 font-bold">
+                          {item.periodo}
+                        </span>
+                      </p>
+
+                      <a
+                        href="https://wa.me/569XXXXXXXX"
+                        className="block text-center mt-6 bg-slate-950 text-white py-3 rounded-xl font-black hover:bg-orange-500"
+                      >
+                        Consultar disponibilidad
+                      </a>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="py-20 bg-white">
             <div className="max-w-6xl mx-auto px-6">
               <h2 className="text-5xl font-black text-center mb-12">
                 ¿Por qué comprar con nosotros?
@@ -389,10 +502,7 @@ export default function Home() {
                   ["📦", "Amplio stock", "Gran variedad de herramientas y materiales."],
                   ["🔒", "Compra segura", "Proceso simple y confiable para cotizar o comprar."],
                 ].map(([icono, titulo, texto]) => (
-                  <div
-                    key={titulo}
-                    className="bg-white rounded-3xl p-8 shadow-lg"
-                  >
+                  <div key={titulo} className="bg-slate-50 rounded-3xl p-8 shadow-lg">
                     <div className="text-4xl">{icono}</div>
                     <h3 className="font-black text-xl mt-4">{titulo}</h3>
                     <p className="text-slate-500 mt-3">{texto}</p>
@@ -407,7 +517,7 @@ export default function Home() {
               <p className="text-orange-500 font-black">CONTACTO</p>
 
               <h2 className="text-5xl font-black mt-4">
-                Solicita tu cotización
+                Cotiza ventas o arriendos
               </h2>
 
               <div className="grid md:grid-cols-3 gap-8 mt-12">
@@ -442,7 +552,7 @@ export default function Home() {
       )}
 
       <footer className="bg-slate-900 text-center text-slate-400 py-8">
-        © 2026 Ferretería Cordillera — Sitio ecommerce demostrativo
+        © 2026 Ferretería Cordillera — Venta y arriendo de herramientas
       </footer>
 
       {loginOpen && (
@@ -462,7 +572,7 @@ export default function Home() {
             <h2 className="text-3xl font-black mb-2">Iniciar sesión</h2>
 
             <p className="text-slate-500 mb-6">
-              Accede a tus cotizaciones y compras.
+              Accede a tus cotizaciones, compras y arriendos.
             </p>
 
             <input
