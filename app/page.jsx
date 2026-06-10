@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 const imagenProducto = (texto) =>
-  `https://source.unsplash.com/900x600/?${encodeURIComponent(texto)}`;
+  `https://placehold.co/900x600/f8fafc/0f172a/png?text=${encodeURIComponent(texto)}`;
 
 const productos = [
   {
