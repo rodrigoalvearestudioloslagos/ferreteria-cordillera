@@ -1,9 +1,58 @@
 "use client";
 
-import { useState } from "react";
+const imagenProducto = (texto) => {
+  const icono = texto.includes("Taladro")
+    ? "🔩"
+    : texto.includes("Esmeril")
+    ? "⚙️"
+    : texto.includes("Destornillador")
+    ? "🪛"
+    : texto.includes("Pintura")
+    ? "🎨"
+    : texto.includes("Ampolleta")
+    ? "💡"
+    : texto.includes("Tornillo")
+    ? "🔧"
+    : texto.includes("Sierra")
+    ? "🪚"
+    : texto.includes("Casco")
+    ? "🦺"
+    : texto.includes("Cinta")
+    ? "📏"
+    : texto.includes("Alargador")
+    ? "🔌"
+    : texto.includes("Silicona")
+    ? "🧴"
+    : texto.includes("Escalera")
+    ? "🪜"
+    : texto.includes("Carretilla")
+    ? "🚧"
+    : texto.includes("Guantes")
+    ? "🧤"
+    : texto.includes("Cemento")
+    ? "🏗️"
+    : texto.includes("Interruptor")
+    ? "💡"
+    : texto.includes("Demoledor")
+    ? "⚒️"
+    : texto.includes("Betonera")
+    ? "🏗️"
+    : texto.includes("Hidrolavadora")
+    ? "💦"
+    : "🛠️";
 
-const imagenProducto = (texto) =>
-  `https://placehold.co/900x600/f8fafc/0f172a/png?text=${encodeURIComponent(texto)}`;
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="900" height="600">
+      <rect width="100%" height="100%" fill="#f8fafc"/>
+      <rect x="45" y="45" width="810" height="510" rx="42" fill="#ffffff" stroke="#e2e8f0" stroke-width="6"/>
+      <text x="50%" y="42%" text-anchor="middle" font-size="150" font-family="Arial">${icono}</text>
+      <text x="50%" y="68%" text-anchor="middle" font-size="42" font-family="Arial" font-weight="800" fill="#0f172a">${texto}</text>
+      <text x="50%" y="78%" text-anchor="middle" font-size="28" font-family="Arial" font-weight="700" fill="#f97316">Ferretería Cordillera</text>
+    </svg>
+  `;
+
+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+};
 
 const productos = [
   {
