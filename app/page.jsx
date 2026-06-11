@@ -1,57 +1,28 @@
 "use client";
 
-const imagenProducto = (texto) => {
-  const icono = texto.includes("Taladro")
-    ? "🔩"
-    : texto.includes("Esmeril")
-    ? "⚙️"
-    : texto.includes("Destornillador")
-    ? "🪛"
-    : texto.includes("Pintura")
-    ? "🎨"
-    : texto.includes("Ampolleta")
-    ? "💡"
-    : texto.includes("Tornillo")
-    ? "🔧"
-    : texto.includes("Sierra")
-    ? "🪚"
-    : texto.includes("Casco")
-    ? "🦺"
-    : texto.includes("Cinta")
-    ? "📏"
-    : texto.includes("Alargador")
-    ? "🔌"
-    : texto.includes("Silicona")
-    ? "🧴"
-    : texto.includes("Escalera")
-    ? "🪜"
-    : texto.includes("Carretilla")
-    ? "🚧"
-    : texto.includes("Guantes")
-    ? "🧤"
-    : texto.includes("Cemento")
-    ? "🏗️"
-    : texto.includes("Interruptor")
-    ? "💡"
-    : texto.includes("Demoledor")
-    ? "⚒️"
-    : texto.includes("Betonera")
-    ? "🏗️"
-    : texto.includes("Hidrolavadora")
-    ? "💦"
-    : "🛠️";
+import { useState } from "react";
 
-  const svg = `
-    <svg xmlns="http://www.w3.org/2000/svg" width="900" height="600">
-      <rect width="100%" height="100%" fill="#f8fafc"/>
-      <rect x="45" y="45" width="810" height="510" rx="42" fill="#ffffff" stroke="#e2e8f0" stroke-width="6"/>
-      <text x="50%" y="42%" text-anchor="middle" font-size="150" font-family="Arial">${icono}</text>
-      <text x="50%" y="68%" text-anchor="middle" font-size="42" font-family="Arial" font-weight="800" fill="#0f172a">${texto}</text>
-      <text x="50%" y="78%" text-anchor="middle" font-size="28" font-family="Arial" font-weight="700" fill="#f97316">Ferretería Cordillera</text>
-    </svg>
-  `;
-
-  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+const obtenerIcono = (texto) => {
+  if (texto.includes("Taladro")) return "🔩";
+  if (texto.includes("Esmeril")) return "⚙️";
+  if (texto.includes("Destornillador")) return "🪛";
+  if (texto.includes("Pintura")) return "🎨";
+  if (texto.includes("Ampolleta")) return "💡";
+  if (texto.includes("Tornillo")) return "🔧";
+  if (texto.includes("Sierra")) return "🪚";
+  if (texto.includes("Casco")) return "🦺";
+  if (texto.includes("Cinta")) return "📏";
+  if (texto.includes("Alargador")) return "🔌";
+  if (texto.includes("Silicona")) return "🧴";
+  if (texto.includes("Escalera")) return "🪜";
+  if (texto.includes("Carretilla")) return "🚧";
+  if (texto.includes("Guantes")) return "🧤";
+  if (texto.includes("Cemento")) return "🏗️";
+  if (texto.includes("Interruptor")) return "💡";
+  if (texto.includes("Demoledor")) return "⚒️";
+  if (texto.includes("Betonera")) return "🏗️";
+  if (texto.includes("Hidrolavadora")) return "💦";
+  return "🛠️";
 };
 
 const productos = [
@@ -61,7 +32,6 @@ const productos = [
     marca: "Cordillera Pro",
     precio: 49990,
     categoria: "Herramientas Eléctricas",
-    imagen: imagenProducto("Taladro Percutor 750W"),
     specs: ["750W de potencia", "Mandril 13 mm", "Velocidad variable", "Uso profesional"],
   },
   {
@@ -70,7 +40,6 @@ const productos = [
     marca: "Master Tools",
     precio: 39990,
     categoria: "Herramientas Eléctricas",
-    imagen: imagenProducto("Esmeril Angular 4.5"),
     specs: ["850W de potencia", "Disco 115 mm", "Protector ajustable", "Ideal para corte y desbaste"],
   },
   {
@@ -79,7 +48,6 @@ const productos = [
     marca: "FixLine",
     precio: 14990,
     categoria: "Herramientas Manuales",
-    imagen: imagenProducto("Set Destornilladores"),
     specs: ["12 piezas", "Puntas imantadas", "Mango antideslizante", "Alta resistencia"],
   },
   {
@@ -88,7 +56,6 @@ const productos = [
     marca: "ColorMax",
     precio: 21990,
     categoria: "Pinturas",
-    imagen: imagenProducto("Pintura Interior Blanca"),
     specs: ["Terminación mate", "Secado rápido", "Lavable", "Alto rendimiento"],
   },
   {
@@ -97,7 +64,6 @@ const productos = [
     marca: "LuzPro",
     precio: 3990,
     categoria: "Electricidad",
-    imagen: imagenProducto("Ampolleta LED 12W"),
     specs: ["12W de consumo", "Luz fría", "Alta eficiencia", "Duración prolongada"],
   },
   {
@@ -106,7 +72,6 @@ const productos = [
     marca: "FixLine",
     precio: 6990,
     categoria: "Ferretería General",
-    imagen: imagenProducto("Caja de Tornillos"),
     specs: ["200 unidades", "Acero resistente", "Uso interior y exterior", "Ideal para madera y metal"],
   },
   {
@@ -115,7 +80,6 @@ const productos = [
     marca: "PowerCut",
     precio: 89990,
     categoria: "Herramientas Eléctricas",
-    imagen: imagenProducto("Sierra Circular 1400W"),
     specs: ["1400W de potencia", "Disco 7 1/4”", "Corte preciso", "Guía lateral incluida"],
   },
   {
@@ -124,7 +88,6 @@ const productos = [
     marca: "SafeWork",
     precio: 8990,
     categoria: "Seguridad",
-    imagen: imagenProducto("Casco de Seguridad"),
     specs: ["Alta resistencia", "Ajuste interior", "Uso en obra", "Certificación de seguridad"],
   },
   {
@@ -133,7 +96,6 @@ const productos = [
     marca: "Medix",
     precio: 4990,
     categoria: "Herramientas Manuales",
-    imagen: imagenProducto("Cinta Metrica 5 Metros"),
     specs: ["5 metros", "Carcasa reforzada", "Seguro de bloqueo", "Medición precisa"],
   },
   {
@@ -142,7 +104,6 @@ const productos = [
     marca: "ElectroFix",
     precio: 12990,
     categoria: "Electricidad",
-    imagen: imagenProducto("Alargador Electrico"),
     specs: ["5 metros", "3 tomas", "Uso domiciliario", "Cable reforzado"],
   },
   {
@@ -151,7 +112,6 @@ const productos = [
     marca: "SealPro",
     precio: 3990,
     categoria: "Ferretería General",
-    imagen: imagenProducto("Silicona Multiuso"),
     specs: ["Uso interior y exterior", "Alta adherencia", "Resistente al agua", "Secado rápido"],
   },
   {
@@ -160,7 +120,6 @@ const productos = [
     marca: "AlturaMax",
     precio: 64990,
     categoria: "Construcción",
-    imagen: imagenProducto("Escalera Aluminio"),
     specs: ["6 peldaños", "Aluminio liviano", "Base antideslizante", "Alta estabilidad"],
   },
   {
@@ -169,7 +128,6 @@ const productos = [
     marca: "ObraMax",
     precio: 54990,
     categoria: "Construcción",
-    imagen: imagenProducto("Carretilla Construccion"),
     specs: ["Bandeja metálica", "Rueda reforzada", "Uso en obra", "Alta capacidad"],
   },
   {
@@ -178,7 +136,6 @@ const productos = [
     marca: "SafeWork",
     precio: 5990,
     categoria: "Seguridad",
-    imagen: imagenProducto("Guantes de Seguridad"),
     specs: ["Antideslizantes", "Resistentes", "Uso industrial", "Cómodos y flexibles"],
   },
   {
@@ -187,7 +144,6 @@ const productos = [
     marca: "ConstruMix",
     precio: 6990,
     categoria: "Construcción",
-    imagen: imagenProducto("Cemento 25 Kg"),
     specs: ["Saco 25 kg", "Alta resistencia", "Para obra gruesa", "Uso interior y exterior"],
   },
   {
@@ -196,7 +152,6 @@ const productos = [
     marca: "ElectroFix",
     precio: 2490,
     categoria: "Electricidad",
-    imagen: imagenProducto("Interruptor Simple"),
     specs: ["Color blanco", "Fácil instalación", "Uso domiciliario", "Material resistente"],
   },
 ];
@@ -207,7 +162,6 @@ const arriendos = [
     nombre: "Demoledor Eléctrico",
     precio: 24990,
     periodo: "por día",
-    imagen: imagenProducto("Demoledor Electrico"),
     descripcion: "Ideal para demolición, retiro de cerámica y trabajos pesados.",
   },
   {
@@ -215,7 +169,6 @@ const arriendos = [
     nombre: "Betonera 130 Litros",
     precio: 19990,
     periodo: "por día",
-    imagen: imagenProducto("Betonera 130 Litros"),
     descripcion: "Perfecta para mezcla de cemento, mortero y hormigón en obra.",
   },
   {
@@ -223,7 +176,6 @@ const arriendos = [
     nombre: "Hidrolavadora Industrial",
     precio: 14990,
     periodo: "por día",
-    imagen: imagenProducto("Hidrolavadora Industrial"),
     descripcion: "Limpieza profunda de fachadas, vehículos, pisos y maquinaria.",
   },
 ];
@@ -358,11 +310,12 @@ export default function Home() {
       {vistaProducto && (
         <section className="bg-white py-20">
           <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-            <img
-              src={vistaProducto.imagen}
-              alt={vistaProducto.nombre}
-              className="w-full h-96 object-contain bg-white p-8 rounded-[2rem] shadow-xl"
-            />
+            <div className="w-full h-96 bg-white p-8 rounded-[2rem] shadow-xl flex flex-col items-center justify-center">
+              <div className="text-9xl mb-6">{obtenerIcono(vistaProducto.nombre)}</div>
+              <p className="text-center text-3xl font-black text-slate-900">
+                {vistaProducto.nombre}
+              </p>
+            </div>
 
             <div>
               <button
@@ -449,11 +402,13 @@ export default function Home() {
                     key={p.id}
                     className="bg-white text-slate-900 rounded-3xl overflow-hidden shadow-xl"
                   >
-                    <img
-                      src={p.imagen}
-                      alt={p.nombre}
-                      className="h-32 w-full object-contain bg-white p-4"
-                    />
+                    <div className="h-32 w-full bg-white flex flex-col items-center justify-center p-4">
+                      <div className="text-5xl mb-2">{obtenerIcono(p.nombre)}</div>
+                      <p className="text-center text-xs font-black text-slate-900">
+                        {p.nombre}
+                      </p>
+                    </div>
+
                     <div className="p-4">
                       <p className="text-xs font-bold text-orange-500">
                         {p.marca}
@@ -531,11 +486,14 @@ export default function Home() {
                       key={producto.id}
                       className="rounded-3xl overflow-hidden bg-slate-50 shadow-xl border border-slate-100"
                     >
-                      <img
-                        src={producto.imagen}
-                        alt={producto.nombre}
-                        className="h-56 w-full object-contain bg-white p-6"
-                      />
+                      <div className="h-56 w-full bg-white flex flex-col items-center justify-center p-6">
+                        <div className="text-7xl mb-4">
+                          {obtenerIcono(producto.nombre)}
+                        </div>
+                        <p className="text-center font-black text-slate-900">
+                          {producto.nombre}
+                        </p>
+                      </div>
 
                       <div className="p-6">
                         <p className="text-xs font-black text-orange-500">
@@ -601,11 +559,14 @@ export default function Home() {
                     key={item.id}
                     className="bg-white rounded-3xl overflow-hidden shadow-xl"
                   >
-                    <img
-                      src={item.imagen}
-                      alt={item.nombre}
-                      className="h-56 w-full object-contain bg-white p-6"
-                    />
+                    <div className="h-56 w-full bg-white flex flex-col items-center justify-center p-6">
+                      <div className="text-7xl mb-4">
+                        {obtenerIcono(item.nombre)}
+                      </div>
+                      <p className="text-center font-black text-slate-900">
+                        {item.nombre}
+                      </p>
+                    </div>
 
                     <div className="p-6">
                       <h3 className="text-2xl font-black">{item.nombre}</h3>
@@ -793,15 +754,15 @@ export default function Home() {
                 </div>
 
                 <button
-  onClick={() => {
-    alert(
-      "Demo Webpay Plus: aquí el cliente sería redirigido al portal de pago seguro."
-    );
-  }}
-  className="w-full bg-red-600 text-white py-4 rounded-xl font-black hover:bg-red-700"
->
-  Pagar con Webpay
-</button>
+                  onClick={() => {
+                    alert(
+                      "Demo Webpay Plus: aquí el cliente sería redirigido al portal de pago seguro."
+                    );
+                  }}
+                  className="w-full bg-red-600 text-white py-4 rounded-xl font-black hover:bg-red-700"
+                >
+                  Pagar con Webpay
+                </button>
               </div>
             )}
           </div>
