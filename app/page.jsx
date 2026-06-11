@@ -181,7 +181,7 @@ const arriendos = [
 ];
 
 const categorias = [
-  "Todas",
+  "Todas las categorías",
   "Herramientas Eléctricas",
   "Herramientas Manuales",
   "Construcción",
@@ -198,9 +198,15 @@ export default function Home() {
   const [cartOpen, setCartOpen] = useState(false);
   const [usuario, setUsuario] = useState(null);
   const [busqueda, setBusqueda] = useState("");
-  const [categoriaActiva, setCategoriaActiva] = useState("Todas");
+  const [categoriaActiva, setCategoriaActiva] = useState("Todas las categorías");
+  const [marcaActiva, setMarcaActiva] = useState("Todas las marcas");
 
-  const total = carrito.reduce((acc, item) => acc + item.precio, 0);
+  const [menuOpen, setMenuOpen] = useState(false);
+const [cupon, setCupon] = useState("");
+
+  const subtotal = carrito.reduce((acc, item) => acc + item.precio, 0);
+const descuento = cupon.toUpperCase() === "CORDILLERA10" ? subtotal * 0.1 : 0;
+const total = subtotal - descuento;
 
   const productosFiltrados = productos.filter((producto) => {
     const coincideBusqueda =
@@ -209,9 +215,12 @@ export default function Home() {
       producto.marca.toLowerCase().includes(busqueda.toLowerCase());
 
     const coincideCategoria =
-      categoriaActiva === "Todas" || producto.categoria === categoriaActiva;
+  categoriaActiva === "Todas las categorías" || producto.categoria === categoriaActiva;
 
-    return coincideBusqueda && coincideCategoria;
+const coincideMarca =
+  marcaActiva === "Todas las marcas" || producto.marca === marcaActiva;
+
+return coincideBusqueda && coincideCategoria && coincideMarca;
   });
 
   const agregarCarrito = (producto) => {
@@ -251,15 +260,33 @@ export default function Home() {
       <header className="sticky top-0 z-50 bg-slate-950 text-white shadow-xl">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
           <div>
-            <h1 className="text-xl md:text-2xl font-black">
-              FERRETERÍA <span className="text-orange-500">CORDILLERA</span>
-            </h1>
-            <p className="text-xs text-slate-400">
-              Venta y arriendo de herramientas
-            </p>
-          </div>
+  <div className="flex items-center gap-3">
+    <img
+      src="/logo-cordillera.png"
+      alt="Ferretería Cordillera"
+      className="h-12 w-auto bg-white rounded-lg p-1"
+    />
+
+    <div>
+      <h1 className="text-xl md:text-2xl font-black">
+        FERRETERÍA <span className="text-orange-500">CORDILLERA</span>
+      </h1>
+
+      <p className="text-xs text-slate-400">
+        Venta y arriendo de herramientas
+      </p>
+    </div>
+  </div>
+</div>
 
           <div className="flex gap-2 md:gap-3">
+            <a
+  href="https://wa.me/569XXXXXXXX"
+  target="_blank"
+  className="hidden md:block bg-green-500 px-4 py-3 rounded-xl text-sm md:text-base font-black hover:bg-green-600"
+>
+  Asesoría por WhatsApp
+</a>
             <button
               onClick={() => setLoginOpen(true)}
               className="bg-slate-800 px-3 md:px-4 py-3 rounded-xl text-sm md:text-base font-bold hover:bg-slate-700"
@@ -297,9 +324,103 @@ export default function Home() {
         </div>
 
         <nav className="border-t border-slate-800">
-          <div className="max-w-7xl mx-auto px-6 py-3 flex gap-8 overflow-x-auto text-sm font-bold">
+            <div className="max-w-7xl mx-auto px-6 py-3 flex gap-8 text-sm font-bold relative">
             <a href="#inicio">Inicio</a>
-            <a href="#categorias">Categorías</a>
+            <div className="relative">
+  <button
+    onClick={() => setMenuOpen(!menuOpen)}
+    className="font-bold hover:text-orange-500 flex items-center gap-1"
+  >
+    Categorías ▾
+  </button>
+
+  {menuOpen && (
+    <div className="absolute top-10 left-0 w-[850px] bg-white text-slate-900 rounded-3xl shadow-2xl z-[9999] p-8 border border-slate-200">
+
+      <div className="grid grid-cols-3 gap-8">
+
+        <div>
+          <h3 className="font-black text-orange-500 mb-4">
+            Categorías
+          </h3>
+
+          {categorias.map((categoria) => (
+            <button
+              key={categoria}
+              onClick={() => {
+                seleccionarCategoria(categoria);
+                setMenuOpen(false);
+              }}
+              className="block w-full text-left py-2 hover:text-orange-500 font-bold"
+            >
+              {categoria}
+            </button>
+          ))}
+        </div>
+
+        <div>
+          <h3 className="font-black text-orange-500 mb-4">
+            Marcas
+          </h3>
+<button
+  onClick={() => {
+    setMarcaActiva("Todas las marcas");
+    setMenuOpen(false);
+  }}
+  className="block w-full text-left py-2 hover:text-orange-500 font-bold"
+>
+  Ver todas las marcas
+</button>
+          {[
+            "Cordillera Pro",
+            "Master Tools",
+            "FixLine",
+            "ColorMax",
+            "SafeWork",
+            "ElectroFix"
+          ].map((marca) => (
+            <button
+              key={marca}
+              onClick={() => {
+  setMarcaActiva(marca);
+setMenuOpen(false);
+}}
+              className="block w-full text-left py-2 hover:text-orange-500 font-bold"
+            >
+              {marca}
+            </button>
+          ))}
+        </div>
+
+        <div className="bg-slate-100 rounded-2xl p-5">
+          <h3 className="font-black text-orange-500">
+            Ferretería Cordillera
+          </h3>
+
+          <p className="text-sm text-slate-600 mt-3">
+            Encuentra herramientas, construcción,
+            pinturas, electricidad y seguridad
+            para tus proyectos.
+          </p>
+
+          <button
+            onClick={() => {
+  setBusqueda("");
+  setMarcaActiva("Todas las marcas");
+  seleccionarCategoria("Todas las categorías");
+  setMenuOpen(false);
+}}
+            className="mt-5 w-full bg-orange-500 text-white py-3 rounded-xl font-black hover:bg-orange-600"
+          >
+            Ver todo el catálogo
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  )}
+</div>
             <a href="#productos">Catálogo</a>
             <a href="#arriendos">Arriendos</a>
             <a href="#contacto">Contacto</a>
@@ -438,12 +559,16 @@ export default function Home() {
                 {categorias.map((categoria) => (
                   <button
                     key={categoria}
-                    onClick={() => seleccionarCategoria(categoria)}
-                    className={`rounded-3xl p-6 shadow-lg hover:-translate-y-2 transition cursor-pointer text-center font-black ${
-                      categoriaActiva === categoria
-                        ? "bg-orange-500 text-white"
-                        : "bg-white text-slate-900"
-                    }`}
+                    onClick={() => {
+  setBusqueda("");
+  seleccionarCategoria(categoria);
+}}
+
+className={`rounded-3xl p-6 shadow-lg hover:-translate-y-2 transition-all duration-300 cursor-pointer text-center font-black ${
+  categoriaActiva === categoria
+    ? "bg-orange-500 text-white"
+    : "bg-white text-slate-900"
+}`}
                   >
                     {categoria}
                   </button>
@@ -459,9 +584,9 @@ export default function Home() {
               </p>
 
               <h2 className="text-5xl font-black text-center mb-6">
-                {categoriaActiva === "Todas"
-                  ? "Productos disponibles"
-                  : categoriaActiva}
+                {categoriaActiva === "Todas las categorías"
+  ? "Productos disponibles"
+  : categoriaActiva}
               </h2>
 
               <p className="text-center text-slate-500 mb-12">
@@ -745,7 +870,24 @@ export default function Home() {
                     </button>
                   </div>
                 ))}
+<div className="border-t pt-6 mt-6">
+  <label className="block font-black mb-2">
+    Cupón de descuento
+  </label>
 
+  <input
+    value={cupon}
+    onChange={(e) => setCupon(e.target.value)}
+    placeholder="Ej: CORDILLERA10"
+    className="w-full border rounded-xl px-4 py-3 text-black"
+  />
+
+  {descuento > 0 && (
+    <p className="text-green-600 font-black mt-2">
+      Cupón aplicado: 10% de descuento
+    </p>
+  )}
+</div>
                 <div className="border-t pt-6 mt-6 flex justify-between text-2xl font-black">
                   <span>Total</span>
                   <span className="text-orange-500">
