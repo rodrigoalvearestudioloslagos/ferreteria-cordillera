@@ -338,11 +338,11 @@ const css = `
   .img-cover {
     width: 100%; height: 100%; object-fit: cover; display: block;
   }
-  .img-box-familia { height: 180px; overflow: hidden; position: relative; background: linear-gradient(135deg, #102844 0%, #1A3F6F 100%); }
-  .img-box-subcat  { height: 140px; overflow: hidden; background: linear-gradient(135deg, #102844 0%, #1A3F6F 100%); }
-  .img-box-prod    { height: 200px; overflow: hidden; background: linear-gradient(135deg, #F5F7FA 0%, #E8EEF5 100%); }
-  .img-box-arriendo{ height: 200px; overflow: hidden; position: relative; background: linear-gradient(135deg, #102844 0%, #1A3F6F 100%); }
-  .img-box-general { height: 170px; overflow: hidden; background: linear-gradient(135deg, #F5F7FA 0%, #E0E7F0 100%); }
+  .img-box-familia { height: 180px; overflow: hidden; position: relative; background: linear-gradient(135deg, #102844 0%, #1A3F6F 100%); width: 100%; }
+  .img-box-subcat  { height: 140px; overflow: hidden; background: linear-gradient(135deg, #102844 0%, #1A3F6F 100%); width: 100%; }
+  .img-box-prod    { height: 200px; overflow: hidden; background: linear-gradient(135deg, #F5F7FA 0%, #E8EEF5 100%); width: 100%; }
+  .img-box-arriendo{ height: 200px; overflow: hidden; position: relative; background: linear-gradient(135deg, #102844 0%, #1A3F6F 100%); width: 100%; }
+  .img-box-general { height: 170px; overflow: hidden; background: linear-gradient(135deg, #F5F7FA 0%, #E0E7F0 100%); width: 100%; }
 
   @media (max-width: 768px) {
     .img-box-familia  { height: 140px; }
