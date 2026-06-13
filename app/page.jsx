@@ -4,7 +4,7 @@ import { useState } from "react";
 const I = {
   hero:         "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&q=85&fit=crop",
   led:          "https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=600&q=80",
-  tablero:      "https://images.unsplash.com/photo-1558618047-b8d652d8cfb5?w=600&q=80",
+  tablero:      "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80",
   cable:        "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80",
   enchufe:      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
   conduit:      "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80",
