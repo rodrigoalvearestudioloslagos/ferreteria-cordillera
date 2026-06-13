@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 
 const I = {
   hero:         "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&q=85&fit=crop",
@@ -396,12 +397,13 @@ const css = `
 // ── LOGO ─────────────────────────────────────────────────────────────────────
 function Logo({ size = 60 }) {
   return (
-    <img
+    <Image
       src="/logo-cordillera.png"
       alt="Ferretería Cordillera"
       width={size}
       height={size}
       style={{ objectFit: "contain", display: "block" }}
+      priority
     />
   );
 }
