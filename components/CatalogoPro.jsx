@@ -51,8 +51,7 @@ export default function CatalogoPro({
                 ))}
               </div>
               <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-                <a href={getWhatsAppQuoteUrl(prodDetalle.nombre)} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ flex: 1 }}>Consultar precio</a>
-                <a href={getWhatsAppQuoteUrl(prodDetalle.nombre)} target="_blank" rel="noopener noreferrer" className="btn-outline-dark" style={{ flex: 1 }}>Consultar por WhatsApp</a>
+                <a href={getWhatsAppQuoteUrl(prodDetalle.nombre, "producto", { marca: prodDetalle.marca, sku: prodDetalle.sku })} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ flex: 1 }}>Cotizar por WhatsApp</a>
               </div>
             </div>
           </div>
@@ -133,7 +132,7 @@ export default function CatalogoPro({
                     {p.precio && <p style={{ color: "#0B1829", fontWeight: 900, fontSize: 22, margin: "0 0 14px" }}>${p.precio.toLocaleString("es-CL")}</p>}
                     <div style={{ display: "flex", gap: 8 }}>
                       <button className="btn-outline-dark" style={{ flex: 1, fontSize: 13 }} onClick={() => setProdDetalle(p)}>Ver detalle</button>
-                      <a href={getWhatsAppQuoteUrl(p.nombre)} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ flex: 1, fontSize: 13, padding: "12px 8px" }}>Cotizar</a>
+                      <a href={getWhatsAppQuoteUrl(p.nombre, "producto", { marca: p.marca, sku: p.sku })} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ flex: 1, fontSize: 13, padding: "12px 8px" }}>Cotizar por WhatsApp</a>
                     </div>
                   </div>
                 </div>

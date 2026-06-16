@@ -1,7 +1,7 @@
 "use client";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { WHATSAPP_NUMBER } from "@/lib/whatsapp";
-import { getCatalogoPro, getCatalogoGeneral, getArriendos } from "@/lib/catalog";
+import { getCatalogoPro, getCatalogoGeneral, getArriendos, buscarProductos } from "@/lib/catalog";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import PorQue from "@/components/PorQue";
@@ -10,6 +10,7 @@ import CatalogoPro from "@/components/CatalogoPro";
 import CatalogoGeneral from "@/components/CatalogoGeneral";
 import SeccionArriendos from "@/components/SeccionArriendos";
 import SeccionContacto from "@/components/SeccionContacto";
+import ResultadosBusqueda from "@/components/ResultadosBusqueda";
 import I from "@/data/images";
 
 const electrico = getCatalogoPro("electrico");
@@ -34,6 +35,27 @@ export default function Home() {
     setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 60);
   };
 
+  // Navega a un producto desde resultados de búsqueda.
+  // irSeccion limpia busqueda y el estado de nav; luego los setters posteriores
+  // sobreescriben los nulls porque React 18 agrupa todas las actualizaciones del evento.
+  const navegarAProducto = ({ seccionId, familiaId, subcatNombre, producto }) => {
+    const catDataMap = { electrico, potencia };
+    irSeccion(seccionId, catDataMap[seccionId] ?? null);
+    if (seccionId === "general") {
+      setCatGenId(familiaId);
+      setProdGen(producto);
+    } else {
+      setFamActiva(familiaId);
+      setSubcatActiva(subcatNombre);
+      setProdDetalle(producto);
+    }
+  };
+
+  const resultadosBusqueda = useMemo(
+    () => busqueda.trim().length >= 2 ? buscarProductos(busqueda) : [],
+    [busqueda]
+  );
+
   const navItems = [
     { k: "inicio",    label: "Inicio" },
     { k: "electrico", label: "⚡ Catálogo Eléctrico",  data: electrico },
@@ -53,48 +75,57 @@ export default function Home() {
         irSeccion={irSeccion}
       />
 
-      {seccion === "inicio" && (
+      {busqueda.trim().length >= 2 ? (
+        <ResultadosBusqueda
+          query={busqueda}
+          resultados={resultadosBusqueda}
+          onNavigate={navegarAProducto}
+        />
+      ) : (
         <>
-          <Hero
-            irSeccion={irSeccion}
-            setFamActiva={setFamActiva}
-            electrico={electrico}
-            potencia={potencia}
-            heroImg={I.hero}
-          />
-          <PorQue />
-          <BannerMedio irSeccion={irSeccion} sectionBgImg={I.sectionBg} />
-          <SeccionArriendos arriendos={arriendos} />
-          <SeccionContacto />
+          {seccion === "inicio" && (
+            <>
+              <Hero
+                irSeccion={irSeccion}
+                setFamActiva={setFamActiva}
+                electrico={electrico}
+                potencia={potencia}
+                heroImg={I.hero}
+              />
+              <PorQue />
+              <BannerMedio irSeccion={irSeccion} sectionBgImg={I.sectionBg} />
+              <SeccionArriendos arriendos={arriendos} />
+              <SeccionContacto />
+            </>
+          )}
+
+          {(seccion === "electrico" || seccion === "potencia") && (
+            <CatalogoPro
+              seccion={seccion}
+              catData={catData}
+              famActiva={famActiva}
+              setFamActiva={setFamActiva}
+              subcatActiva={subcatActiva}
+              setSubcatActiva={setSubcatActiva}
+              prodDetalle={prodDetalle}
+              setProdDetalle={setProdDetalle}
+            />
+          )}
+
+          {seccion === "general" && (
+            <CatalogoGeneral
+              general={general}
+              catGenId={catGenId}
+              setCatGenId={setCatGenId}
+              prodGen={prodGen}
+              setProdGen={setProdGen}
+            />
+          )}
+
+          {seccion === "arriendos" && <SeccionArriendos arriendos={arriendos} />}
+          {seccion === "contacto"  && <SeccionContacto />}
         </>
       )}
-
-      {(seccion === "electrico" || seccion === "potencia") && (
-        <CatalogoPro
-          seccion={seccion}
-          catData={catData}
-          famActiva={famActiva}
-          setFamActiva={setFamActiva}
-          subcatActiva={subcatActiva}
-          setSubcatActiva={setSubcatActiva}
-          prodDetalle={prodDetalle}
-          setProdDetalle={setProdDetalle}
-        />
-      )}
-
-      {seccion === "general" && (
-        <CatalogoGeneral
-          general={general}
-          busqueda={busqueda}
-          catGenId={catGenId}
-          setCatGenId={setCatGenId}
-          prodGen={prodGen}
-          setProdGen={setProdGen}
-        />
-      )}
-
-      {seccion === "arriendos" && <SeccionArriendos arriendos={arriendos} />}
-      {seccion === "contacto"  && <SeccionContacto />}
 
       <footer style={{ background: "#0B1829", borderTop: "1px solid #1A3F6F", textAlign: "center", color: "#7FA4C8", padding: "28px 16px", fontSize: 13 }}>
         © 2026 Ferretería Cordillera — Ferretería profesional · Puerto Varas

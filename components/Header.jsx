@@ -26,7 +26,7 @@ export default function Header({ seccion, busqueda, setBusqueda, navItems, irSec
           <div style={{ flex: 1, minWidth: 180, display: "flex", maxWidth: 460 }}>
             <input
               value={busqueda}
-              onChange={e => { setBusqueda(e.target.value); if (e.target.value) irSeccion("general"); }}
+              onChange={e => setBusqueda(e.target.value)}
               style={{ width: "100%", padding: "10px 16px", background: "#102844", border: "1px solid #1A3F6F", borderRight: "none", borderRadius: "9px 0 0 9px", color: "#fff", fontSize: 14, outline: "none" }}
               placeholder="Buscar productos..."
             />
