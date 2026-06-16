@@ -178,7 +178,7 @@ body {
 .bc-btn { background: none; border: none; color: #7FA4C8; cursor: pointer; font-weight: 600; font-size: 14px; padding: 0; }
 .bc-btn:hover { color: #F5B800; }
 .bc-sep { color: #3A5F80; font-size: 16px; }
-.bc-current { color: #0B1829; font-weight: 700; font-size: 14px; }
+.bc-current { color: #fff; font-weight: 700; font-size: 14px; }
 
 /* ── OVERLAY GRADIENTE ── */
 .overlay-bottom { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(11,24,41,0.85) 100%); }
@@ -194,3 +194,96 @@ body {
 /* scrollbar horizontal nav */
 .nav-scroll { overflow-x: auto; scrollbar-width: none; }
 .nav-scroll::-webkit-scrollbar { display: none; }
+
+/* ── Etapa 4B: Rail de categorías + filtros de marca ── */
+
+.layout-pro { display: flex; gap: 28px; align-items: flex-start; }
+.pro-rail-content { flex: 1; min-width: 0; }
+
+.pro-rail {
+  width: 230px; flex-shrink: 0;
+  background: #fff; border: 1px solid #DDE3EC; border-radius: 12px;
+  overflow: hidden; position: sticky; top: 120px;
+  max-height: calc(100vh - 140px); overflow-y: auto;
+}
+
+.rail-toggle {
+  display: none; width: 100%; background: #0B1829; color: #fff;
+  border: none; padding: 12px 16px; font-size: 13px; font-weight: 700;
+  cursor: pointer; align-items: center; justify-content: space-between;
+}
+
+.pro-rail-titulo {
+  background: #0D1F35; color: #7FA4C8;
+  font-size: 10px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.1em; padding: 10px 16px;
+}
+
+.pro-rail-fam {
+  display: block; width: 100%; text-align: left; background: none;
+  border: none; border-top: 1px solid #F0F4F8;
+  padding: 10px 16px 6px; color: #0B1829; font-weight: 700;
+  font-size: 13px; cursor: pointer; transition: color 0.15s;
+}
+.pro-rail-fam:hover { color: #1A3F6F; }
+.pro-rail-fam.active { color: #F5B800; }
+
+.pro-rail-sf {
+  display: block; width: 100%; text-align: left; background: none; border: none;
+  padding: 5px 16px 5px 28px; color: #4A6080; font-size: 12px;
+  cursor: pointer; line-height: 1.4;
+  border-left: 3px solid transparent; transition: color 0.15s, border-color 0.15s;
+}
+.pro-rail-sf:last-child { padding-bottom: 10px; }
+.pro-rail-sf:hover { color: #0B1829; }
+.pro-rail-sf.active { color: #1A3F6F; font-weight: 700; border-left-color: #F5B800; }
+
+/* Grids más compactos dentro del area de contenido del rail */
+.pro-rail-content .grid-subcats   { grid-template-columns: repeat(3, 1fr); }
+.pro-rail-content .grid-productos { grid-template-columns: repeat(3, 1fr); }
+
+/* Chips de marca */
+.brand-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+.brand-chip {
+  background: #fff; border: 1.5px solid #DDE3EC; border-radius: 99px;
+  padding: 5px 16px; font-size: 13px; font-weight: 600; color: #4A6080;
+  cursor: pointer; transition: all 0.15s;
+}
+.brand-chip:hover { border-color: #1A3F6F; color: #1A3F6F; }
+.brand-chip.active { background: #0B1829; border-color: #0B1829; color: #fff; }
+
+/* Spec row numerada para ficha técnica de detalle */
+.spec-row {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 8px 0; border-bottom: 1px solid #EEF0F5;
+  font-size: 14px; color: #0B1829; line-height: 1.5;
+}
+.spec-row:last-child { border-bottom: none; }
+.spec-num {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: #1A3F6F; color: #fff;
+  font-size: 10px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 2px;
+}
+
+/* Chip de código/SKU en ficha */
+.prod-codigo {
+  display: inline-block; background: #EEF0F5; color: #4A6080;
+  font-size: 11px; font-weight: 700; font-family: monospace;
+  padding: 3px 10px; border-radius: 6px; letter-spacing: 0.04em;
+}
+
+@media (max-width: 1024px) {
+  .pro-rail-content .grid-subcats   { grid-template-columns: repeat(2, 1fr); }
+  .pro-rail-content .grid-productos { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .layout-pro { flex-direction: column; gap: 16px; }
+  .pro-rail { width: 100%; position: static; max-height: none; border-radius: 8px; }
+  .rail-toggle { display: flex; }
+  .rail-body-hidden { display: none; }
+  .pro-rail-content .grid-subcats   { grid-template-columns: repeat(2, 1fr); }
+  .pro-rail-content .grid-productos { grid-template-columns: repeat(2, 1fr); }
+}
