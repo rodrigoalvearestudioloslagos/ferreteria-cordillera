@@ -1,4 +1,4 @@
-import { WHATSAPP_NUMBER } from "@/lib/whatsapp";
+import { getWhatsAppGenericUrl } from "@/lib/whatsapp";
 
 const WA_SVG = (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
@@ -34,7 +34,7 @@ export default function SeccionContacto() {
           ))}
         </div>
         <div style={{ textAlign: "center", marginTop: 48 }}>
-          <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 10, background: "#25D366", color: "#fff", padding: "15px 32px", borderRadius: 99, fontWeight: 900, fontSize: 16, textDecoration: "none" }}>
+          <a href={getWhatsAppGenericUrl()} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 10, background: "#25D366", color: "#fff", padding: "15px 32px", borderRadius: 99, fontWeight: 900, fontSize: 16, textDecoration: "none" }}>
             {WA_SVG}
             Cotizar por WhatsApp
           </a>
