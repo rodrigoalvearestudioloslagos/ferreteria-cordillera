@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { WHATSAPP_NUMBER } from "@/lib/whatsapp";
+import { getCatalogoPro, getCatalogoGeneral, getArriendos } from "@/lib/catalog";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import PorQue from "@/components/PorQue";
@@ -10,10 +11,11 @@ import CatalogoGeneral from "@/components/CatalogoGeneral";
 import SeccionArriendos from "@/components/SeccionArriendos";
 import SeccionContacto from "@/components/SeccionContacto";
 import I from "@/data/images";
-import electrico from "@/data/especialidadElectrica";
-import potencia from "@/data/potenciaControl";
-import general from "@/data/catalogoGeneral";
-import arriendos from "@/data/arriendos";
+
+const electrico = getCatalogoPro("electrico");
+const potencia  = getCatalogoPro("potencia");
+const general   = getCatalogoGeneral();
+const arriendos = getArriendos();
 
 export default function Home() {
   const [busqueda,      setBusqueda]      = useState("");
