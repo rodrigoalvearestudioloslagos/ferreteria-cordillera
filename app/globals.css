@@ -287,3 +287,11 @@ body {
   .pro-rail-content .grid-subcats   { grid-template-columns: repeat(2, 1fr); }
   .pro-rail-content .grid-productos { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* ── Etapa 4C: Filtros + orden en Catálogo General ── */
+.orden-select {
+  background: #fff; border: 1.5px solid #DDE3EC; border-radius: 10px;
+  padding: 8px 14px; font-size: 13px; font-weight: 600;
+  color: #4A6080; cursor: pointer; outline: none;
+}
+.orden-select:focus { border-color: #1A3F6F; color: #0B1829; }
