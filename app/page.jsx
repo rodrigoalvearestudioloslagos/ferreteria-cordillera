@@ -1,6 +1,14 @@
 "use client";
 import { useState } from "react";
 
+const WHATSAPP_NUMBER = "569XXXXXXXX";
+const getWhatsAppQuoteUrl = (nombre, tipo = "producto") => {
+  const mensaje = tipo === "arriendo"
+    ? `Hola, quiero consultar por el arriendo de: ${nombre}. ¿Me pueden dar más información?`
+    : `Hola, quiero cotizar este producto: ${nombre}. ¿Me pueden dar más información?`;
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensaje)}`;
+};
+
 const I = {
   hero:         "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&q=85&fit=crop",
   led:          "https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=600&q=80",
@@ -408,10 +416,6 @@ function Logo({ size = 60 }) {
 
 // ── COMPONENTE PRINCIPAL ──────────────────────────────────────────────────────
 export default function Home() {
-  const [carrito,       setCarrito]       = useState([]);
-  const [cartOpen,      setCartOpen]      = useState(false);
-  const [loginOpen,     setLoginOpen]     = useState(false);
-  const [usuario,       setUsuario]       = useState(null);
   const [busqueda,      setBusqueda]      = useState("");
   const [seccion,       setSeccion]       = useState("inicio");
   const [catData,       setCatData]       = useState(null);
@@ -420,19 +424,6 @@ export default function Home() {
   const [prodDetalle,   setProdDetalle]   = useState(null);
   const [catGenId,      setCatGenId]      = useState(null);
   const [prodGen,       setProdGen]       = useState(null);
-  const [cupon,         setCupon]         = useState("");
-  const [cuponMsg,      setCuponMsg]      = useState("");
-
-  const subtotal  = carrito.reduce((a, i) => a + (i.precio || 0), 0);
-  const descuento = cupon.trim().toUpperCase() === "CORDILLERA10" ? Math.round(subtotal * 0.1) : 0;
-  const total     = subtotal - descuento;
-
-  const agregarCarrito = (p) => { setCarrito(c => [...c, p]); setCartOpen(true); };
-  const quitarItem     = (i) => setCarrito(c => c.filter((_, idx) => idx !== i));
-  const aplicarCupon   = () => {
-    if (cupon.trim().toUpperCase() === "CORDILLERA10") setCuponMsg("✅ 10% aplicado");
-    else setCuponMsg("❌ Cupón inválido");
-  };
 
   const irSeccion = (s, data = null) => {
     setSeccion(s); setCatData(data);
@@ -484,10 +475,8 @@ export default function Home() {
                   ))}
                 </div>
                 <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-                  {prodDetalle.precio
-                    ? <button className="btn-primary" style={{ flex: 1 }} onClick={() => agregarCarrito(prodDetalle)}>Agregar al carrito</button>
-                    : <a href="https://wa.me/569XXXXXXXX" className="btn-primary" style={{ flex: 1 }}>Consultar precio</a>}
-                  <a href="https://wa.me/569XXXXXXXX" className="btn-outline-dark" style={{ flex: 1 }}>Consultar por WhatsApp</a>
+                  <a href={getWhatsAppQuoteUrl(prodDetalle.nombre)} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ flex: 1 }}>Consultar precio</a>
+                  <a href={getWhatsAppQuoteUrl(prodDetalle.nombre)} target="_blank" rel="noopener noreferrer" className="btn-outline-dark" style={{ flex: 1 }}>Consultar por WhatsApp</a>
                 </div>
               </div>
             </div>
@@ -568,9 +557,7 @@ export default function Home() {
                       {p.precio && <p style={{ color: "#0B1829", fontWeight: 900, fontSize: 22, margin: "0 0 14px" }}>${p.precio.toLocaleString("es-CL")}</p>}
                       <div style={{ display: "flex", gap: 8 }}>
                         <button className="btn-outline-dark" style={{ flex: 1, fontSize: 13 }} onClick={() => setProdDetalle(p)}>Ver detalle</button>
-                        {p.precio
-                          ? <button className="btn-primary" style={{ flex: 1, fontSize: 13, padding: "12px 8px" }} onClick={() => agregarCarrito(p)}>Agregar</button>
-                          : <a href="https://wa.me/569XXXXXXXX" className="btn-primary" style={{ flex: 1, fontSize: 13, padding: "12px 8px" }}>Cotizar</a>}
+                        <a href={getWhatsAppQuoteUrl(p.nombre)} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ flex: 1, fontSize: 13, padding: "12px 8px" }}>Cotizar</a>
                       </div>
                     </div>
                   </div>
@@ -608,8 +595,7 @@ export default function Home() {
                 <p style={{ color: "#4A6080", fontWeight: 700, fontSize: 12, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 12 }}>Características</p>
                 {(prodGen.specs || []).map(s => <div key={s} className="spec-item"><div className="spec-dot" />{s}</div>)}
               </div>
-              <button className="btn-primary" style={{ width: "100%", marginBottom: 12 }} onClick={() => agregarCarrito(prodGen)}>Agregar al carrito</button>
-              <a href="https://wa.me/569XXXXXXXX" className="btn-outline-dark" style={{ display: "block", width: "100%" }}>Consultar por WhatsApp</a>
+              <a href={getWhatsAppQuoteUrl(prodGen.nombre)} target="_blank" rel="noopener noreferrer" className="btn-outline-dark" style={{ display: "block", width: "100%", textAlign: "center" }}>Consultar por WhatsApp</a>
             </div>
           </div>
         </div>
@@ -671,7 +657,7 @@ export default function Home() {
         <p style={{ color: "#0B1829", fontWeight: 900, fontSize: 22, margin: "0 0 14px" }}>${p.precio.toLocaleString("es-CL")}</p>
         <div style={{ display: "flex", gap: 8 }}>
           <button className="btn-outline-dark" style={{ flex: 1, fontSize: 13 }} onClick={onClick}>Ver detalle</button>
-          <button className="btn-primary" style={{ flex: 1, fontSize: 13, padding: "12px 8px" }} onClick={() => agregarCarrito(p)}>Agregar</button>
+          <a href={getWhatsAppQuoteUrl(p.nombre)} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ flex: 1, fontSize: 13, padding: "12px 8px", textAlign: "center" }}>Cotizar</a>
         </div>
       </div>
     </div>
@@ -799,7 +785,7 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-                <a href="https://wa.me/569XXXXXXXX" className="btn-dark">Consultar disponibilidad</a>
+                <a href={getWhatsAppQuoteUrl(item.nombre, "arriendo")} target="_blank" rel="noopener noreferrer" className="btn-dark">Consultar disponibilidad</a>
               </div>
             </div>
           ))}
@@ -836,7 +822,7 @@ export default function Home() {
           ))}
         </div>
         <div style={{ textAlign: "center", marginTop: 48 }}>
-          <a href="https://wa.me/569XXXXXXXX" style={{ display: "inline-flex", alignItems: "center", gap: 10, background: "#25D366", color: "#fff", padding: "15px 32px", borderRadius: 99, fontWeight: 900, fontSize: 16, textDecoration: "none" }}>
+          <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 10, background: "#25D366", color: "#fff", padding: "15px 32px", borderRadius: 99, fontWeight: 900, fontSize: 16, textDecoration: "none" }}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             Cotizar por WhatsApp
           </a>
@@ -891,21 +877,7 @@ export default function Home() {
               </button>
             </div>
 
-            <div style={{ display: "flex", gap: 10, marginLeft: "auto" }}>
-              <button className="hide-mobile" onClick={() => setLoginOpen(true)}
-                style={{ background: "#102844", color: "#fff", border: "1px solid #1A3F6F", padding: "10px 16px", borderRadius: 9, fontWeight: 700, fontSize: 13, cursor: "pointer" }}>
-                {usuario ? `Hola, ${usuario}` : "Iniciar sesión"}
-              </button>
-              <button onClick={() => setCartOpen(true)}
-                style={{ position: "relative", background: "#F5B800", color: "#0B1829", border: "none", padding: "10px 18px", borderRadius: 9, fontWeight: 900, fontSize: 13, cursor: "pointer" }}>
-                🛒 Carrito
-                {carrito.length > 0 && (
-                  <span style={{ position: "absolute", top: -8, right: -8, background: "#fff", color: "#F5B800", borderRadius: "50%", width: 20, height: 20, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 900 }}>
-                    {carrito.length}
-                  </span>
-                )}
-              </button>
-            </div>
+            <div style={{ marginLeft: "auto" }} />
           </div>
 
           <nav className="nav-scroll" style={{ borderTop: "1px solid #1A3F6F" }}>
@@ -933,7 +905,7 @@ export default function Home() {
         </footer>
 
         {/* Burbuja WhatsApp */}
-        <a href="https://wa.me/569XXXXXXXX" target="_blank" rel="noopener noreferrer"
+        <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer"
           style={{ position: "fixed", bottom: 24, right: 24, zIndex: 999, display: "flex", alignItems: "center", gap: 10, background: "#25D366", color: "#fff", padding: "13px 20px", borderRadius: 99, textDecoration: "none", fontWeight: 800, fontSize: 14, boxShadow: "0 4px 20px rgba(37,211,102,.4)" }}>
           <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
@@ -942,85 +914,6 @@ export default function Home() {
         </a>
 
         {/* Login modal */}
-        {loginOpen && (
-          <div className="modal-bg" onClick={() => setLoginOpen(false)}>
-            <form onSubmit={e => { e.preventDefault(); setUsuario("Cliente"); setLoginOpen(false); }}
-              style={{ background: "#fff", borderRadius: 20, maxWidth: 400, width: "100%", padding: "2rem", boxShadow: "0 20px 60px rgba(0,0,0,.3)" }}
-              onClick={e => e.stopPropagation()}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
-                <h2 style={{ color: "#0B1829", fontWeight: 900, fontSize: 22, margin: 0 }}>Iniciar sesión</h2>
-                <button type="button" onClick={() => setLoginOpen(false)} style={{ background: "none", border: "none", fontSize: 24, cursor: "pointer", color: "#999" }}>×</button>
-              </div>
-              <input style={{ width: "100%", padding: "12px 16px", border: "1px solid #DDE3EC", borderRadius: 10, fontSize: 14, color: "#0B1829", boxSizing: "border-box", marginBottom: 12, outline: "none", display: "block" }} placeholder="Correo electrónico" />
-              <input type="password" style={{ width: "100%", padding: "12px 16px", border: "1px solid #DDE3EC", borderRadius: 10, fontSize: 14, color: "#0B1829", boxSizing: "border-box", marginBottom: 20, outline: "none", display: "block" }} placeholder="Contraseña" />
-              <button className="btn-primary" style={{ width: "100%", padding: 14 }}>Entrar</button>
-              <p style={{ textAlign: "center", fontSize: 12, color: "#999", marginTop: 12 }}>Demo visual — no guarda usuarios todavía</p>
-            </form>
-          </div>
-        )}
-
-        {/* Carrito */}
-        {cartOpen && (
-          <div className="cart-side">
-            <div style={{ background: "#fff", width: "100%", maxWidth: 440, height: "100%", padding: "24px", overflowY: "auto", display: "flex", flexDirection: "column" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
-                <h2 style={{ color: "#0B1829", fontWeight: 900, fontSize: 22, margin: 0 }}>Tu carrito</h2>
-                <button onClick={() => setCartOpen(false)} style={{ background: "none", border: "none", fontSize: 24, cursor: "pointer", color: "#999" }}>×</button>
-              </div>
-              {carrito.length === 0
-                ? <p style={{ color: "#999", textAlign: "center", marginTop: 60, fontSize: 15 }}>Tu carrito está vacío.</p>
-                : <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-                    <div style={{ flex: 1 }}>
-                      {carrito.map((item, idx) => (
-                        <div key={idx} style={{ display: "flex", gap: 12, alignItems: "flex-start", padding: "14px 0", borderBottom: "1px solid #F0F4F8" }}>
-                          {item.img && (
-                            <div style={{ width: 60, height: 60, borderRadius: 8, overflow: "hidden", flexShrink: 0, background: "#F5F7FA" }}>
-                              <img src={item.img} alt={item.nombre} className="img-cover"
-                                onError={e => e.target.style.display = "none"} />
-                            </div>
-                          )}
-                          <div style={{ flex: 1 }}>
-                            <p style={{ color: "#0B1829", fontWeight: 800, fontSize: 14, margin: "0 0 2px" }}>{item.nombre}</p>
-                            {item.marca && <p style={{ color: "#999", fontSize: 12, margin: "0 0 4px" }}>{item.marca}</p>}
-                            {item.precio && <p style={{ color: "#0B1829", fontWeight: 900, fontSize: 17, margin: 0 }}>${item.precio.toLocaleString("es-CL")}</p>}
-                          </div>
-                          <button onClick={() => quitarItem(idx)} style={{ background: "none", border: "none", color: "#e53", fontSize: 12, fontWeight: 700, cursor: "pointer", flexShrink: 0 }}>Eliminar</button>
-                        </div>
-                      ))}
-                    </div>
-                    <div style={{ borderTop: "1px solid #F0F4F8", paddingTop: 18, marginTop: 18 }}>
-                      <label style={{ display: "block", fontWeight: 800, color: "#0B1829", marginBottom: 8, fontSize: 14 }}>Cupón de descuento</label>
-                      <div style={{ display: "flex", gap: 8, marginBottom: 8 }}>
-                        <input value={cupon} onChange={e => setCupon(e.target.value)} placeholder="Ej: CORDILLERA10"
-                          style={{ flex: 1, padding: "10px 14px", border: "1px solid #DDE3EC", borderRadius: 9, fontSize: 14, color: "#0B1829", outline: "none" }} />
-                        <button onClick={aplicarCupon}
-                          style={{ background: "#0B1829", color: "#fff", border: "none", padding: "10px 16px", borderRadius: 9, fontWeight: 700, fontSize: 13, cursor: "pointer" }}>
-                          Aplicar
-                        </button>
-                      </div>
-                      {cuponMsg && <p style={{ color: cuponMsg.startsWith("✅") ? "#0a7" : "#c00", fontSize: 13, fontWeight: 700, margin: "0 0 12px" }}>{cuponMsg}</p>}
-                      {descuento > 0 && (
-                        <>
-                          <div style={{ display: "flex", justifyContent: "space-between", fontSize: 14, color: "#4A6080", marginBottom: 6 }}>
-                            <span>Subtotal</span><span>${subtotal.toLocaleString("es-CL")}</span>
-                          </div>
-                          <div style={{ display: "flex", justifyContent: "space-between", fontSize: 14, color: "#0a7", fontWeight: 700, marginBottom: 6 }}>
-                            <span>Descuento 10%</span><span>-${descuento.toLocaleString("es-CL")}</span>
-                          </div>
-                        </>
-                      )}
-                      <div style={{ display: "flex", justifyContent: "space-between", fontSize: 21, fontWeight: 900, color: "#0B1829", margin: "14px 0 18px" }}>
-                        <span>Total</span><span style={{ color: "#F5B800" }}>${total.toLocaleString("es-CL")}</span>
-                      </div>
-                      <button onClick={() => alert("Demo Webpay Plus: aquí el cliente sería redirigido al portal de pago seguro.")}
-                        style={{ width: "100%", background: "#c0392b", color: "#fff", border: "none", padding: 15, borderRadius: 10, fontWeight: 900, fontSize: 15, cursor: "pointer" }}>
-                        Pagar con Webpay
-                      </button>
-                    </div>
-                  </div>}
-            </div>
-          </div>
-        )}
       </main>
     </>
   );
