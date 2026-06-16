@@ -1,5 +1,6 @@
 "use client";
 import Logo from "./Logo";
+import { PHONE_DISPLAY } from "@/lib/whatsapp";
 
 export default function Header({ seccion, busqueda, setBusqueda, navItems, irSeccion }) {
   return (
@@ -7,7 +8,7 @@ export default function Header({ seccion, busqueda, setBusqueda, navItems, irSec
       <div style={{ background: "#F5B800", color: "#0B1829", fontSize: 12, fontWeight: 700 }}>
         <div className="page-wrap" style={{ padding: "7px 24px", display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 4 }}>
           <span>🚚 Retiro en tienda y despacho a domicilio · Puerto Varas</span>
-          <span className="hide-mobile">📞 +56 9 XXXX XXXX</span>
+          {PHONE_DISPLAY && <span className="hide-mobile">📞 {PHONE_DISPLAY}</span>}
         </div>
       </div>
 

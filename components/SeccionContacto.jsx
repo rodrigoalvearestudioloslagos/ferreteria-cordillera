@@ -1,4 +1,4 @@
-import { getWhatsAppGenericUrl } from "@/lib/whatsapp";
+import { getWhatsAppGenericUrl, PHONE_DISPLAY } from "@/lib/whatsapp";
 
 const WA_SVG = (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
@@ -19,7 +19,7 @@ export default function SeccionContacto() {
         </div>
         <div className="grid-contacto">
           {[
-            { ic: "📞", t: "Teléfono",  v: "+56 9 XXXX XXXX",               sub: "Lunes a sábado · 9:00 a 19:00" },
+            { ic: "📞", t: "Teléfono",  v: PHONE_DISPLAY ?? "+56 9 XXXX XXXX", sub: "Lunes a sábado · 9:00 a 19:00" },
             { ic: "📧", t: "Correo",    v: "ventas@ferreteriacordillera.cl", sub: "Respondemos en menos de 24h" },
             { ic: "📍", t: "Dirección", v: "Puerto Varas, Chile",            sub: "Visítanos en nuestra tienda" },
           ].map(({ ic, t, v, sub }) => (
