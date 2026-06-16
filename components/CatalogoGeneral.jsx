@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { getWhatsAppQuoteUrl } from "@/lib/whatsapp";
 
 function ProdCard({ p, onClick }) {
@@ -22,36 +22,68 @@ function ProdCard({ p, onClick }) {
   );
 }
 
-export default function CatalogoGeneral({ general, catGenId, setCatGenId, prodGen, setProdGen }) {
+/**
+ * Subcomponente que encapsula filtros y orden de una categoría.
+ * Al cambiar de categoría, el padre lo monta con key={cat.id}, lo que reinicia
+ * automáticamente marcaFiltro y orden sin necesidad de useEffect.
+ */
+function CatProductos({ cat, setProdGen }) {
   const [marcaFiltro, setMarcaFiltro] = useState(null);
   const [orden,       setOrden]       = useState("default");
 
+  const marcasDisponibles = [...new Set(cat.productos.map(p => p.marca).filter(Boolean))].sort();
+
+  const productosFiltrados = cat.productos
+    .filter(p => !marcaFiltro || p.marca === marcaFiltro)
+    .slice()
+    .sort((a, b) => {
+      if (orden === "nombre")       return a.nombre.localeCompare(b.nombre, "es");
+      if (orden === "precio-asc")   return (a.precio ?? Infinity) - (b.precio ?? Infinity);
+      if (orden === "precio-desc")  return (b.precio ?? 0) - (a.precio ?? 0);
+      return 0;
+    });
+
+  return (
+    <>
+      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 16, marginBottom: 20, flexWrap: "wrap" }}>
+        <div>
+          <h2 style={{ color: "#0B1829", fontWeight: 900, fontSize: "clamp(20px,3vw,28px)", margin: "0 0 4px" }}>{cat.nombre}</h2>
+          <p style={{ color: "#4A6080", fontSize: 13, margin: 0 }}>
+            {productosFiltrados.length}{marcaFiltro ? ` de ${cat.productos.length}` : ""} productos
+          </p>
+        </div>
+        <select value={orden} onChange={e => setOrden(e.target.value)} className="orden-select">
+          <option value="default">Ordenar por</option>
+          <option value="nombre">Nombre A–Z</option>
+          <option value="precio-asc">Precio: menor a mayor</option>
+          <option value="precio-desc">Precio: mayor a menor</option>
+        </select>
+      </div>
+
+      {marcasDisponibles.length > 1 && (
+        <div className="brand-chips">
+          <button className={`brand-chip${!marcaFiltro ? " active" : ""}`} onClick={() => setMarcaFiltro(null)}>Todas</button>
+          {marcasDisponibles.map(m => (
+            <button key={m} className={`brand-chip${marcaFiltro === m ? " active" : ""}`} onClick={() => setMarcaFiltro(m)}>{m}</button>
+          ))}
+        </div>
+      )}
+
+      <div className="grid-productos">
+        {productosFiltrados.map((p, i) => <ProdCard key={p.nombre + i} p={p} onClick={() => setProdGen(p)} />)}
+      </div>
+
+      {productosFiltrados.length === 0 && marcaFiltro && (
+        <p style={{ color: "#4A6080", fontSize: 14, marginTop: 24 }}>Sin productos para la marca seleccionada.</p>
+      )}
+    </>
+  );
+}
+
+export default function CatalogoGeneral({ general, catGenId, setCatGenId, prodGen, setProdGen }) {
   const cat = catGenId ? general.find(c => c.id === catGenId) : null;
 
-  // Resetea filtros cada vez que cambia la categoría activa (incluso al navegar desde búsqueda)
-  useEffect(() => {
-    setMarcaFiltro(null);
-    setOrden("default");
-  }, [catGenId]);
-
-  const selCat  = (id) => setCatGenId(id);
   const resetNav = () => { setCatGenId(null); setProdGen(null); };
-
-  const marcasDisponibles = cat
-    ? [...new Set(cat.productos.map(p => p.marca).filter(Boolean))].sort()
-    : [];
-
-  const productosFiltrados = cat
-    ? cat.productos
-        .filter(p => !marcaFiltro || p.marca === marcaFiltro)
-        .slice()
-        .sort((a, b) => {
-          if (orden === "nombre")       return a.nombre.localeCompare(b.nombre, "es");
-          if (orden === "precio-asc")   return (a.precio ?? Infinity) - (b.precio ?? Infinity);
-          if (orden === "precio-desc")  return (b.precio ?? 0) - (a.precio ?? 0);
-          return 0;
-        })
-    : [];
 
   return (
     <div style={{ background: "#F5F7FA", minHeight: "100vh", paddingBottom: 60 }}>
@@ -107,44 +139,8 @@ export default function CatalogoGeneral({ general, catGenId, setCatGenId, prodGe
           </div>
         )}
 
-        {/* Productos de la categoría con filtros y orden */}
-        {cat && !prodGen && (
-          <>
-            {/* Cabecera: título + selector de orden */}
-            <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 16, marginBottom: 20, flexWrap: "wrap" }}>
-              <div>
-                <h2 style={{ color: "#0B1829", fontWeight: 900, fontSize: "clamp(20px,3vw,28px)", margin: "0 0 4px" }}>{cat.nombre}</h2>
-                <p style={{ color: "#4A6080", fontSize: 13, margin: 0 }}>
-                  {productosFiltrados.length}{marcaFiltro ? ` de ${cat.productos.length}` : ""} productos
-                </p>
-              </div>
-              <select value={orden} onChange={e => setOrden(e.target.value)} className="orden-select">
-                <option value="default">Ordenar por</option>
-                <option value="nombre">Nombre A–Z</option>
-                <option value="precio-asc">Precio: menor a mayor</option>
-                <option value="precio-desc">Precio: mayor a menor</option>
-              </select>
-            </div>
-
-            {/* Chips de marca */}
-            {marcasDisponibles.length > 1 && (
-              <div className="brand-chips">
-                <button className={`brand-chip${!marcaFiltro ? " active" : ""}`} onClick={() => setMarcaFiltro(null)}>Todas</button>
-                {marcasDisponibles.map(m => (
-                  <button key={m} className={`brand-chip${marcaFiltro === m ? " active" : ""}`} onClick={() => setMarcaFiltro(m)}>{m}</button>
-                ))}
-              </div>
-            )}
-
-            <div className="grid-productos">
-              {productosFiltrados.map((p, i) => <ProdCard key={p.nombre + i} p={p} onClick={() => setProdGen(p)} />)}
-            </div>
-
-            {productosFiltrados.length === 0 && marcaFiltro && (
-              <p style={{ color: "#4A6080", fontSize: 14, marginTop: 24 }}>Sin productos para la marca seleccionada.</p>
-            )}
-          </>
-        )}
+        {/* Productos de la categoría — key={cat.id} reinicia marcaFiltro/orden al cambiar de cat */}
+        {cat && !prodGen && <CatProductos key={cat.id} cat={cat} setProdGen={setProdGen} />}
 
         {/* Grid de categorías */}
         {!cat && !prodGen && (
@@ -153,7 +149,7 @@ export default function CatalogoGeneral({ general, catGenId, setCatGenId, prodGe
             <p style={{ color: "#4A6080", marginBottom: 32, fontSize: 15 }}>Herramientas, pinturas, seguridad, construcción y más</p>
             <div className="grid-general">
               {general.map(c => (
-                <button key={c.id} className="card" style={{ textAlign: "left", padding: 0, width: "100%", display: "flex", flexDirection: "column" }} onClick={() => selCat(c.id)}>
+                <button key={c.id} className="card" style={{ textAlign: "left", padding: 0, width: "100%", display: "flex", flexDirection: "column" }} onClick={() => setCatGenId(c.id)}>
                   <div className="img-box-general">
                     <img src={c.img} alt={c.nombre} className="img-cover"
                       onError={e => { e.target.parentNode.style.background = "#E8EEF5"; e.target.style.display = "none"; }} />
