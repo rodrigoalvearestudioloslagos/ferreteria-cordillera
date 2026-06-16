@@ -15,12 +15,12 @@ export default function Header({ seccion, busqueda, setBusqueda, navItems, irSec
       <header style={{ position: "sticky", top: 0, zIndex: 100, background: "#0B1829", borderBottom: "1px solid #1A3F6F", boxShadow: "0 2px 16px rgba(0,0,0,.3)" }}>
         <div className="page-wrap" style={{ padding: "12px 24px", display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
           <button onClick={() => irSeccion("inicio")} style={{ background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex", alignItems: "center", gap: 12 }}>
-            <Logo size={60} />
+            <Logo size={82} />
             <div style={{ textAlign: "left" }}>
-              <p style={{ color: "#fff", fontWeight: 900, fontSize: 16, margin: 0, letterSpacing: "0.02em", lineHeight: 1.1 }}>
+              <p style={{ color: "#fff", fontWeight: 900, fontSize: 20, margin: 0, letterSpacing: "0.02em", lineHeight: 1.1 }}>
                 FERRETERÍA <span style={{ color: "#F5B800" }}>CORDILLERA</span>
               </p>
-              <p style={{ color: "#7FA4C8", fontSize: 11, margin: "3px 0 0" }}>Ferretería · Puerto Varas</p>
+              <p style={{ color: "#7FA4C8", fontSize: 12, margin: "4px 0 0" }}>Ferretería · Puerto Varas</p>
             </div>
           </button>
 
